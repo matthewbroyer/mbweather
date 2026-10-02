@@ -456,6 +456,44 @@ button,a,select,summary,label,input[type=checkbox],input[type=range]{touch-actio
 @keyframes pin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @media(max-width:860px){.bnav{background:color-mix(in srgb,var(--surface) 92%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px)}}
 
+/* ===== mobile polish ===== */
+.chart{min-width:0!important}
+.axis{margin-bottom:6px}
+@media(max-width:860px){
+  body{padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+  .bnav{background:color-mix(in srgb,var(--surface) 86%,transparent);-webkit-backdrop-filter:saturate(1.8) blur(18px);backdrop-filter:saturate(1.8) blur(18px);border-top:1px solid var(--line);box-shadow:0 -6px 20px -10px rgba(0,0,0,.25);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));gap:2px}
+  .bnav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:56px;border-radius:12px;font-size:11px;font-weight:600;letter-spacing:0;color:var(--muted)}
+  .bnav button[aria-current="true"]{box-shadow:none;color:var(--accent)}
+  .bnav .ic{display:grid;place-items:center;width:58px;height:30px;border-radius:15px;transition:background-color .15s}
+  .bnav button[aria-current="true"] .ic{background:var(--accent-soft)}
+  .bnav .ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .bnav button[aria-current="true"] .ic svg{stroke-width:2.2}
+  .bn-sheet{bottom:calc(80px + env(safe-area-inset-bottom,0px));border-radius:14px}
+  .toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+}
+@media(max-width:700px){
+  .top .in{padding:0 12px}
+  .top .bar{gap:8px;padding-top:10px;padding-bottom:10px}
+  .brand{flex:none}
+  .brand .logo{width:38px;height:38px}
+  .search{flex:1 1 0;min-width:0}
+  .acts{flex:1 0 100%;display:flex;flex-wrap:wrap;gap:8px}
+  .acts .btn,.acts .bk-chip{min-height:44px;padding:0 12px;font-size:14px;border-radius:10px;border-color:var(--line);flex:1 1 auto;white-space:nowrap}
+  .acts #setHome,.acts #goHome{flex:1 1 40%;overflow:visible;text-overflow:clip}
+  .acts #goHome[hidden]{display:none}
+  .acts .setwrap{flex:1 1 auto;display:flex}
+  .acts .setwrap .btn{flex:1}
+  .themesw{flex:none;padding:0 4px}
+}
+@media(max-width:620px){
+  table{font-size:11.5px}
+  th,td{padding:7px 3px}
+  th{white-space:normal;line-height:1.15;vertical-align:bottom}
+  table .pro{display:none!important}
+  #cmpBody td{white-space:normal}
+}
+@media(max-width:400px){.mh{display:none}}
+
 </style>
 </head>
 <body>
@@ -554,11 +592,11 @@ button,a,select,summary,label,input[type=checkbox],input[type=range]{touch-actio
 </div>
 
 <nav class="bnav" id="bnav" aria-label="Sections">
-  <button type="button" data-tab="overview" aria-current="true">Overview</button>
-  <button type="button" data-tab="hourly">Hourly</button>
-  <button type="button" data-tab="map">Map</button>
-  <button type="button" data-tab="life">Plan</button>
-  <button type="button" class="pro" id="bnMore" aria-expanded="false" aria-controls="bnSheet">More</button>
+  <button type="button" data-tab="overview" aria-current="true"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><path d="M9 2.5v1.6M2.5 9h1.6M4.4 4.4l1.1 1.1M13.6 4.4l-1.1 1.1"/><path d="M8 20h9a3.5 3.5 0 0 0 .4-7 5 5 0 0 0-9.6 1.3A3 3 0 0 0 8 20z"/></svg></span><span>Overview</span></button>
+  <button type="button" data-tab="hourly"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg></span><span>Hourly</span></button>
+  <button type="button" data-tab="map"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5l6-2.5 6 2.5 6-2.5v13.5l-6 2.5-6-2.5-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></svg></span><span>Map</span></button>
+  <button type="button" data-tab="life"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4M9 15l2 2 4-4"/></svg></span><span>Plan</span></button>
+  <button type="button" class="pro" id="bnMore" aria-expanded="false" aria-controls="bnSheet"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18.5" cy="12" r="1.4"/></svg></span><span>More</span></button>
 </nav>
 <div class="bn-sheet" id="bnSheet" hidden>
   <button type="button" class="pro" data-tab="compare">Compare</button>
@@ -763,6 +801,7 @@ function hour(k){
   return memo[k]=h;
 }
 function hAt(k){return k>=0&&k<DATA.hourly.time.length}
+function cw(){return Math.min(720,Math.max(300,document.documentElement.clientWidth-66))}
 
 /* ---------- work-window rules ---------- */
 function cvR(type){
@@ -878,14 +917,16 @@ function relDay(i){var t=hour(I0+i).time.slice(0,10);return t===DATA.current.tim
 
 function drawWork(){
   var el=$("#workBody");if(!el)return;
-  var N=72,cells="",axis="";
+  var N=72,cells="",axis="",chunks="",NR=cw()<520,CH=NR?12:72,LS=NR?3:6;
   for(var i=0;i<N;i++){
     var k=I0+i;if(!hAt(k)){N=i;break}
+    if(i>0&&i%CH===0){chunks+='<div class="strip">'+cells+'</div><div class="axis">'+axis+'</div>';cells="";axis=""}
     var e=evalHour(k);
     cells+='<button class="cell '+(e.lvl===2?"stop":e.lvl===1?"caution":"")+(i===selCell?" sel":"")+'" data-i="'+i+'" aria-label="'+esc(relDay(i)+hr12(hourOf(e.h.time))+": "+(e.lvl===2?"no-go":e.lvl===1?"marginal":"go"))+'"></button>';
     var hh=hourOf(e.h.time);
-    axis+='<span>'+(i%6===0?(hh===0?relDay(i).trim()||"12AM":hr12(hh).replace(" ","")):"")+'</span>';
+    axis+='<span>'+(i%LS===0?(hh===0?relDay(i).trim()||"12AM":hr12(hh).replace(" ","")):"")+'</span>';
   }
+  chunks+='<div class="strip">'+cells+'</div><div class="axis">'+axis+'</div>';
   var now=evalHour(I0),rs=ranges(N);
   var vcls=now.lvl===0?"go":now.lvl===1?"caution":"stop";
   var vtxt=now.lvl===0?"GO":now.lvl===1?"MARGINAL":"NO-GO";
@@ -907,7 +948,7 @@ function drawWork(){
   var groups={},gOrder=[];Object.keys(PRESETS).forEach(function(id){var g=PRESETS[id].g;if(!g)return;if(!groups[g]){groups[g]=[];gOrder.push(g)}groups[g].push(id)});
   var opts=gOrder.map(function(g){return '<optgroup label="'+g+'">'+groups[g].map(opt).join("")+'</optgroup>'}).join("")+opt("custom");
   el.innerHTML='<div class="row" style="margin-bottom:12px"><label class="sm" for="preset">Plan for</label><select class="btn" id="preset">'+opts+'</select></div><div class="sm" style="margin:-4px 0 12px">'+esc(PRESETS[work.preset].note||"")+'</div><div class="verdict '+vcls+'"><span class="big">'+vtxt+'</span><span>'+vsub+'</span></div>'+
-    '<div class="scroll"><div class="strip" id="strip">'+cells+'</div><div class="axis">'+axis+'</div></div>'+
+    '<div class="scroll" id="strip">'+chunks+'</div>'+
     '<div class="sm" id="cellInfo" style="margin-top:8px;min-height:18px">Tap an hour to see what limits it.</div>'+
     '<h3>Upcoming windows</h3><div class="wins">'+wins+'</div>'+
     '<details class="fold"><summary>Edit limits</summary><div class="row" style="margin-top:8px"><span class="sm">Change any limit and the strip updates instantly. Limits are saved on this device.</span></div><div class="rules">'+rules+'</div></details>'+
@@ -927,7 +968,7 @@ function drawWork(){
 
 function sum(name,a,b){var s=0,any=false;for(var k=a;k<b;k++){var v=g(name,k);if(v!=null){s+=v;any=true}}return any?s:null}
 function chartSvg(o){
-  var N=o.N,W0=720,Ht=o.h||200,L=36,R=12,T0=14,B=o.arrows?44:26,pw=W0-L-R,ph=Ht-T0-B,all=[];
+  var N=o.N,W0=cw(),XS=cw()<520?12:6,Ht=o.h||200,L=36,R=12,T0=14,B=o.arrows?44:26,pw=W0-L-R,ph=Ht-T0-B,all=[];
   o.series.forEach(function(s){s.v.forEach(function(v){if(v!=null)all.push(v)})});
   if(!all.length)return'<div class="ok">No data for this model.</div>';
   var lo=Math.min.apply(null,all),hi=Math.max.apply(null,all);if(o.zero)lo=Math.min(lo,0);
@@ -936,9 +977,9 @@ function chartSvg(o){
   var X=function(i){return L+pw*i/(N-1)},Y=function(v){return T0+ph*(1-(v-lo)/(hi-lo))};
   var grid="",bars="",xl="",lines="";
   for(var gv=lo;gv<=hi+1e-9;gv+=step)grid+='<line x1="'+L+'" x2="'+(W0-R)+'" y1="'+Y(gv)+'" y2="'+Y(gv)+'" stroke="var(--line)"/><text x="'+(L-6)+'" y="'+(Y(gv)+4)+'" text-anchor="end">'+(o.yfmt?o.yfmt(gv):gv)+'</text>';
-  if(o.bars){var bm=Math.max.apply(null,o.bars.v.concat([o.bars.min||0.01]));o.bars.v.forEach(function(v,i){var bh=(v||0)/bm*ph*0.4;if(bh>0.6)bars+='<rect x="'+(X(i)-2.5)+'" y="'+(T0+ph-bh)+'" width="5" height="'+bh+'" fill="var(--rain)" opacity=".5"/>'})}
+  if(o.bars){var bm=Math.max.apply(null,o.bars.v.concat([o.bars.min||0.01]));o.bars.v.forEach(function(v,i){var bh=(v||0)/bm*ph*0.4;if(bh>0.6)bars+='<rect x="'+(X(i)-Math.min(2.5,pw/N/2-.4))+'" y="'+(T0+ph-bh)+'" width="'+Math.min(5,pw/N-.8)+'" height="'+bh+'" fill="var(--rain)" opacity=".5"/>'})}
   for(var i=0;i<N;i++){var hh=hourOf((o.times||DATA.hourly.time.slice(I0))[i]);
-    if(hh%6===0){xl+='<line x1="'+X(i)+'" x2="'+X(i)+'" y1="'+T0+'" y2="'+(T0+ph)+'" stroke="var(--line)" stroke-dasharray="2 4"/><text x="'+X(i)+'" y="'+(Ht-(o.arrows?30:8))+'" text-anchor="middle">'+(i===0?"Now":hh===0?new Date((o.times||DATA.hourly.time.slice(I0))[i].slice(0,10)+"T12:00:00").toLocaleDateString("en-US",{weekday:"short"}):hr12(hh).replace(" ",""))+'</text>'}}
+    if(hh%XS===0){xl+='<line x1="'+X(i)+'" x2="'+X(i)+'" y1="'+T0+'" y2="'+(T0+ph)+'" stroke="var(--line)" stroke-dasharray="2 4"/><text x="'+X(i)+'" y="'+(Ht-(o.arrows?30:8))+'" text-anchor="middle">'+(i===0?"Now":hh===0?new Date((o.times||DATA.hourly.time.slice(I0))[i].slice(0,10)+"T12:00:00").toLocaleDateString("en-US",{weekday:"short"}):hr12(hh).replace(" ",""))+'</text>'}}
   o.series.forEach(function(s){
     var pts=[];s.v.forEach(function(v,i){if(v!=null)pts.push(X(i).toFixed(1)+","+Y(v).toFixed(1))});
     if(pts.length<2)return;
@@ -1076,10 +1117,10 @@ function render(){
   for(i=0;i<N;i++){var h=hour(i0+i),hh=hourOf(h.time);
     var gcls=h.gust!=null&&(h.gust>=40?"g":h.gust>=25?"w":""),wet=h.pr>=0.01?"r":"";
     rows+='<tr class="'+(i===0?"cur ":"")+(hh===0&&i>0?"dayb":"")+'">'+td(i===0?"Now":(hh===0?new Date(h.time.slice(0,10)+"T12:00:00").toLocaleDateString("en-US",{weekday:"short"})+" ":"")+hr12(hh))+
-      td(T(h.t))+td(T(h.ap))+td(T(h.dew),"pro")+td(nf(h.rh)+"%","pro")+td(arrow(h.dir)+cardinal(h.dir)+" "+W(h.wind))+td(W(h.gust),gcls)+
+      td(T(h.t))+td(T(h.ap),"mh")+td(T(h.dew),"pro")+td(nf(h.rh)+"%","pro")+td(arrow(h.dir)+cardinal(h.dir)+" "+W(h.wind))+td(W(h.gust),gcls)+
       td(h.pop==null?"–":h.pop+"%",wet)+td(h.pr>0?PR(h.pr,C()?1:2):"·",wet)+td(nf(h.cloud)+"%","pro")+td(PRESS(h.p),"pro")+td(nf(h.cape),"pro")+'</tr>';
   }
-  var table='<div class="scroll"><table><thead><tr><th>Time</th><th>Temp</th><th>Feels</th><th class="pro">Dew</th><th class="pro">RH</th><th>Wind '+tu+'</th><th>Gust</th><th>Precip %</th><th>Precip '+prU()+'</th><th class="pro">Cloud</th><th class="pro">'+pU()+'</th><th class="pro">CAPE</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+  var table='<div class="scroll"><table><thead><tr><th>Time</th><th>Temp</th><th class="mh">Feels</th><th class="pro">Dew</th><th class="pro">RH</th><th>Wind '+tu+'</th><th>Gust</th><th>Precip %</th><th>Precip '+prU()+'</th><th class="pro">Cloud</th><th class="pro">'+pU()+'</th><th class="pro">CAPE</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
 
   /* charts, 72 h */
   var CN=Math.min(72,len-i0),tS=[],dS=[],aS=[],pr=[],wS=[],gS=[],w80=[],dirs=[];
@@ -1168,6 +1209,7 @@ function showTab(t){
   document.querySelectorAll("[data-tab]").forEach(function(b){if(b.dataset.tab===t)b.setAttribute("aria-current","true");else b.removeAttribute("aria-current")});
   var mr=$("#bnMore");if(mr){if(t==="compare"||t==="field")mr.setAttribute("aria-current","true");else mr.removeAttribute("aria-current")}
   document.querySelectorAll(".panel").forEach(function(p){p.hidden=p.id!=="panel-"+t});
+  if(t!=="map"&&MAP.playing)stopPlay();
   if(DATA){if(t==="map")initMapTab();else if(t==="life")loadLife();else if(t==="compare")loadCompare()}
 }
 function applyMode(){
@@ -1507,8 +1549,8 @@ function drawAQ(){
   var el=$("#aqBody");if(!el)return;var a=EX.aq;
   if(!a||a.loading){el.innerHTML='<div class="ok">Loading air quality…</div>';return}
   if(a.err||!a.d.current){el.innerHTML='<div class="ok">Air quality data is not available for this location.</div>';return}
-  var c=a.d.current,cat=aqCat(c.us_aqi),H=a.d.hourly,i0=Math.max(0,H.time.indexOf(c.time.slice(0,13)+":00")),N=Math.min(48,H.time.length-i0),bars="",W0=720,Ht=90;
-  for(var i=0;i<N;i++){var v=H.us_aqi[i0+i];if(v==null)continue;var bh=Math.min(v,200)/200*60,cc=aqCat(v)[1];bars+='<rect x="'+(i*(W0/N)+1)+'" y="'+(70-bh)+'" width="'+(W0/N-2)+'" height="'+Math.max(bh,2)+'" fill="'+cc+'" rx="2"><title>'+hr12(hourOf(H.time[i0+i]))+': AQI '+v+'</title></rect>';if(i%6===0)bars+='<text x="'+(i*(W0/N))+'" y="86">'+(i===0?"Now":hr12(hourOf(H.time[i0+i])).replace(" ",""))+'</text>'}
+  var c=a.d.current,cat=aqCat(c.us_aqi),H=a.d.hourly,i0=Math.max(0,H.time.indexOf(c.time.slice(0,13)+":00")),N=Math.min(48,H.time.length-i0),bars="",W0=cw(),Ht=90;
+  for(var i=0;i<N;i++){var v=H.us_aqi[i0+i];if(v==null)continue;var bh=Math.min(v,200)/200*60,cc=aqCat(v)[1];bars+='<rect x="'+(i*(W0/N)+1)+'" y="'+(70-bh)+'" width="'+(W0/N-2)+'" height="'+Math.max(bh,2)+'" fill="'+cc+'" rx="2"><title>'+hr12(hourOf(H.time[i0+i]))+': AQI '+v+'</title></rect>';if(i%(W0<520?12:6)===0)bars+='<text x="'+(i*(W0/N))+'" y="86">'+(i===0?"Now":hr12(hourOf(H.time[i0+i])).replace(" ",""))+'</text>'}
   var pol=["alder","birch","grass","ragweed","olive","mugwort"].map(function(p){var v=H[p+"_pollen"]&&H[p+"_pollen"][i0];return v==null?null:[p,v]}).filter(Boolean);
   var polTxt=pol.length?'<h3>Pollen (grains/m³)</h3><div class="best">'+pol.map(function(p){return '<span class="chip">'+p[0][0].toUpperCase()+p[0].slice(1)+' '+nf(p[1],0)+'</span>'}).join("")+'</div>':'<div class="note">Pollen counts are only published for Europe.</div>';
   el.innerHTML='<div class="tiles">'+tileH("US AQI",nf(c.us_aqi)+"<small>"+cat[0]+"</small>","Next 48 h peak "+nf(Math.max.apply(null,H.us_aqi.slice(i0,i0+N).filter(function(v){return v!=null}).concat([0]))),"")+
@@ -1533,11 +1575,11 @@ function loadCoast(){
 function tideSvg(t){
   var pts=t.hourly.map(function(p){return {t:p.t,v:+p.v}}),nowKey=DATA.current.time.slice(0,10)+" "+DATA.current.time.slice(11,16);
   var s=pts.findIndex(function(p){return p.t>=nowKey.slice(0,13)+":00"});if(s<0)s=0;pts=pts.slice(s,s+49);if(pts.length<4)return"";
-  var W0=720,Ht=190,L=36,R=12,T0=14,B=26,pw=W0-L-R,ph=Ht-T0-B,lo=Math.min.apply(null,pts.map(function(p){return p.v})),hi=Math.max.apply(null,pts.map(function(p){return p.v}));
+  var W0=cw(),Ht=190,L=36,R=12,T0=14,B=26,pw=W0-L-R,ph=Ht-T0-B,lo=Math.min.apply(null,pts.map(function(p){return p.v})),hi=Math.max.apply(null,pts.map(function(p){return p.v}));
   lo=Math.floor(lo-0.5);hi=Math.ceil(hi+0.5);var X=function(i){return L+pw*i/(pts.length-1)},Y=function(v){return T0+ph*(1-(v-lo)/(hi-lo))};
   var cv=function(v){return C()?v/3.28084:v},grid="",xl="";
   for(var gv=lo;gv<=hi;gv+=Math.max(1,Math.round((hi-lo)/4)))grid+='<line x1="'+L+'" x2="'+(W0-R)+'" y1="'+Y(gv)+'" y2="'+Y(gv)+'" stroke="var(--line)"/><text x="'+(L-6)+'" y="'+(Y(gv)+4)+'" text-anchor="end">'+nf(cv(gv),C()?1:0)+'</text>';
-  pts.forEach(function(p,i){var h=+p.t.slice(11,13);if(h%6===0)xl+='<line x1="'+X(i)+'" x2="'+X(i)+'" y1="'+T0+'" y2="'+(T0+ph)+'" stroke="var(--line)" stroke-dasharray="2 4"/><text x="'+X(i)+'" y="'+(Ht-8)+'" text-anchor="middle">'+(i===0?"Now":hr12(h).replace(" ",""))+'</text>'});
+  pts.forEach(function(p,i){var h=+p.t.slice(11,13);if(h%(W0<520?12:6)===0)xl+='<line x1="'+X(i)+'" x2="'+X(i)+'" y1="'+T0+'" y2="'+(T0+ph)+'" stroke="var(--line)" stroke-dasharray="2 4"/><text x="'+X(i)+'" y="'+(Ht-8)+'" text-anchor="middle">'+(i===0?"Now":hr12(h).replace(" ",""))+'</text>'});
   var line=pts.map(function(p,i){return X(i).toFixed(1)+","+Y(p.v).toFixed(1)}).join(" ");
   return '<svg class="chart" viewBox="0 0 '+W0+' '+Ht+'" role="img" aria-label="Predicted tide height, next 48 hours">'+grid+xl+'<path d="M'+X(0)+","+(T0+ph)+" L"+line.split(" ").join(" L")+" L"+X(pts.length-1)+","+(T0+ph)+'Z" fill="var(--rain)" opacity=".15"/><polyline points="'+line+'" fill="none" stroke="var(--rain)" stroke-width="2.4" stroke-linejoin="round"/><circle cx="'+X(0)+'" cy="'+Y(pts[0].v)+'" r="4.5" fill="var(--rain)"/></svg>';
 }
@@ -1752,7 +1794,8 @@ function stopPlay(){clearInterval(MAP.timer);MAP.playing=false;$("#mapPlay").tex
 function togglePlay(){
   if(MAP.playing){stopPlay();return}
   var sl=$("#mapSlider");MAP.playing=true;$("#mapPlay").textContent="Pause";
-  MAP.timer=setInterval(function(){var v=(+sl.value+1)>+sl.max?+sl.min:+sl.value+1;sl.value=v;sliderChanged()},MAP.layer==="radar"?700:500);
+  sl.value=sl.min;sliderChanged();
+  MAP.timer=setInterval(function(){if(+sl.value>=+sl.max){stopPlay();return}sl.value=+sl.value+1;sliderChanged()},MAP.layer==="radar"?700:500);
 }
 function sliderChanged(){var v=+$("#mapSlider").value;if(MAP.layer==="radar")showFrame(v);else drawMarkers()}
 function fetchGrid(){
