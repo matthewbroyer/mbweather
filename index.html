@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; img-src data: blob: https://tilecache.rainviewer.com https://tiles.openfreemap.org https://cdnjs.cloudflare.com; connect-src https://api.open-meteo.com https://geocoding-api.open-meteo.com https://archive-api.open-meteo.com https://air-quality-api.open-meteo.com https://marine-api.open-meteo.com https://api.weather.gov https://api.tidesandcurrents.noaa.gov https://api.rainviewer.com https://tiles.openfreemap.org https://cdn.jsdelivr.net data: blob:; worker-src blob:; child-src blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
 <script>(function(){var t="light";try{var p=JSON.parse(localStorage.getItem("wx.prefs")||"{}");if(p&&p.theme==="dark")t="dark"}catch(e){}document.documentElement.setAttribute("data-theme",t)})();</script>
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2212%22 fill=%22%230284c7%22/%3E%3Ccircle cx=%2225%22 cy=%2222.75%22 r=%2211%22 fill=%22%23f6c453%22/%3E%3Cpath d=%22M20 50.75h25a10.5 10.5 0 0 0 1.3-20.9 14.2 14.2 0 0 0-27.2 3.8 8.7 8.7 0 0 0 .9 17.1z%22 fill=%22%23fff%22 stroke=%22%230284c7%22 stroke-width=%223%22 paint-order=%22stroke%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2064%2064%22%3E%3Crect%20width=%2264%22%20height=%2264%22%20rx=%2212%22%20fill=%22%230284c7%22/%3E%3Ccircle%20cx=%2225%22%20cy=%2222.75%22%20r=%2211%22%20fill=%22%23f6c453%22/%3E%3Cpath%20d=%22M20%2050.75h25a10.5%2010.5%200%200%200%201.3-20.9%2014.2%2014.2%200%200%200-27.2%203.8%208.7%208.7%200%200%200%20.9%2017.1z%22%20fill=%22%23fff%22%20stroke=%22%230284c7%22%20stroke-width=%223%22%20paint-order=%22stroke%22%20stroke-linejoin=%22round%22/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/png;base64,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">
 <meta name="theme-color" content="#0284c7">
 <meta name="description" content="Free weather forecast, radar map and alerts. No accounts, no ads, no tracking.">
@@ -330,8 +330,8 @@ h1,h2,h3,h4{letter-spacing:-.005em}
 .top .bar{padding-top:8px;padding-bottom:8px;row-gap:6px;flex-wrap:wrap}
 .acts{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 .brand{gap:9px;font-size:14.5px;font-weight:650;margin-right:6px}
-.brand .logo{width:28px;height:28px;border-radius:var(--r);background:#0284c7;display:grid;place-items:center;flex:none}
-.brand .logo svg{width:22px;height:22px}
+.brand .logo{width:30px;height:30px;display:block;flex:none}
+.brand .logo svg{width:100%;height:100%;display:block}
 /* controls */
 .btn,.seg button,select.btn,.search input{min-height:var(--ctl);font-size:13.5px}
 .btn{border-radius:var(--r-sm);padding:0 14px;font-weight:550;border:1px solid var(--border-strong);background:var(--surface)}
@@ -437,6 +437,25 @@ tbody tr:hover td{background:var(--hover-band)}
 @media(max-width:430px){.brand .bt{display:none}}
 @media(pointer:coarse),(max-width:700px){.themesw,.top .btn,.top .bk-chip,.search input{min-height:44px}.tabs button{min-height:44px}.linkbtn{min-height:44px}}
 @media print{.top,.bnav{position:static;box-shadow:none}}
+/* mobile feel */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{overscroll-behavior-y:none}
+*{-webkit-tap-highlight-color:transparent}
+button,a,select,summary,label,input[type=checkbox],input[type=range]{touch-action:manipulation}
+.scroll,.hours,.results,.panel-set{-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.btn,.bnav button,.bn-sheet button,.results button{transition:background-color .12s,color .12s,transform .1s}
+@media (pointer:coarse){
+  .btn:active,.bnav button:active,.bn-sheet button:active,.results button:active{transform:scale(.97)}
+  input,select,textarea,.search input,.date,.rule input[type=number],.fld .btn,.fld select{font-size:16px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .panel:not([hidden]){animation:pin .22s ease-out}
+  .bn-sheet:not([hidden]){animation:pin .16s ease-out}
+  .toast:not([hidden]){animation:pin .2s ease-out}
+}
+@keyframes pin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(max-width:860px){.bnav{background:color-mix(in srgb,var(--surface) 92%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px)}}
+
 </style>
 </head>
 <body>
@@ -446,7 +465,7 @@ tbody tr:hover td{background:var(--hover-band)}
 <input type="file" id="importFile" accept="application/json,.json" hidden>
 <header class="top" id="top">
   <div class="in bar">
-    <h1 class="brand" id="brand"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><g stroke="#f6c453" stroke-width="1.7" stroke-linecap="round"><path d="M15.10 9.50L16.80 9.50"/><path d="M13.46 13.46L14.66 14.66"/><path d="M9.50 15.10L9.50 16.80"/><path d="M5.54 13.46L4.34 14.66"/><path d="M3.90 9.50L2.20 9.50"/><path d="M5.54 5.54L4.34 4.34"/><path d="M9.50 3.90L9.50 2.20"/><path d="M13.46 5.54L14.66 4.34"/></g><circle cx="9.5" cy="9.5" r="3.7" fill="#f6c453"/><path d="M8 21h9.4a4 4 0 0 0 .5-7.97 5.4 5.4 0 0 0-10.3 1.45A3.3 3.3 0 0 0 8 21z" fill="#fff" stroke="#0284c7" stroke-width="1.3" paint-order="stroke" stroke-linejoin="round"/></svg></span><span class="bt">mbweather.online</span></h1>
+    <h1 class="brand" id="brand"><span class="logo" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#0284c7"/><circle cx="25" cy="22.75" r="11" fill="#f6c453"/><path d="M20 50.75h25a10.5 10.5 0 0 0 1.3-20.9 14.2 14.2 0 0 0-27.2 3.8 8.7 8.7 0 0 0 .9 17.1z" fill="#fff" stroke="#0284c7" stroke-width="3" paint-order="stroke" stroke-linejoin="round"/></svg></span><span class="bt">mbweather.online</span></h1>
     <div class="search">
       <input id="q" type="search" placeholder="Search a town or ZIP" autocomplete="off" aria-label="Search for a place">
       <ul class="results" id="results" aria-live="polite" hidden></ul>
@@ -507,9 +526,8 @@ tbody tr:hover td{background:var(--hover-band)}
       <button type="button" data-tab="overview" aria-current="true">Overview</button>
       <button type="button" data-tab="hourly">Hourly</button>
       <button type="button" data-tab="map">Map</button>
-      <button type="button" data-tab="life">Life</button>
+      <button type="button" data-tab="life">Plan</button>
       <button type="button" class="pro" data-tab="compare">Compare</button>
-      <button type="button" data-tab="work">Windows</button>
       <button type="button" class="pro" data-tab="field">Field &amp; air</button>
     </nav>
   </div>
@@ -539,8 +557,7 @@ tbody tr:hover td{background:var(--hover-band)}
   <button type="button" data-tab="overview" aria-current="true">Overview</button>
   <button type="button" data-tab="hourly">Hourly</button>
   <button type="button" data-tab="map">Map</button>
-  <button type="button" data-tab="life">Life</button>
-  <button type="button" data-tab="work">Windows</button>
+  <button type="button" data-tab="life">Plan</button>
   <button type="button" class="pro" id="bnMore" aria-expanded="false" aria-controls="bnSheet">More</button>
 </nav>
 <div class="bn-sheet" id="bnSheet" hidden>
@@ -557,7 +574,7 @@ tbody tr:hover td{background:var(--hover-band)}
   <ul>
     <li>Your home location (name and coordinates) and the place you are viewing.</li>
     <li>Your settings: units, view, light or dark theme, forecast model, season start date, last tab.</li>
-    <li>Your limits for the Windows tab.</li>
+    <li>Your limits for Windows (on the Plan tab).</li>
     <li>A list of alert IDs already notified, so you do not get repeats.</li>
     <li>A saved copy of recent forecasts (up to 3 places, kept 2 hours) so the app opens fast.</li>
     <li>A flag that you finished setup, and the time of your last backup.</li>
@@ -893,7 +910,8 @@ function drawWork(){
     '<div class="scroll"><div class="strip" id="strip">'+cells+'</div><div class="axis">'+axis+'</div></div>'+
     '<div class="sm" id="cellInfo" style="margin-top:8px;min-height:18px">Tap an hour to see what limits it.</div>'+
     '<h3>Upcoming windows</h3><div class="wins">'+wins+'</div>'+
-    '<details class="fold"><summary>Edit limits</summary><div class="row" style="margin-top:8px"><span class="sm">Change any limit and the strip updates instantly. Limits are saved on this device.</span></div><div class="rules">'+rules+'</div></details>';
+    '<details class="fold"><summary>Edit limits</summary><div class="row" style="margin-top:8px"><span class="sm">Change any limit and the strip updates instantly. Limits are saved on this device.</span></div><div class="rules">'+rules+'</div></details>'+
+    '<details class="fold"><summary>Best days this week · activity scores</summary>'+actHtml()+'</details>';
   var strip=$("#strip");
   if(strip)strip.onclick=function(ev){
     var b=ev.target.closest(".cell");if(!b)return;selCell=+b.dataset.i;
@@ -1125,7 +1143,7 @@ function render(){
        '<h3>Wind ('+tu+'), direction every 3 h</h3><div class="legend"><span><i style="background:var(--accent)"></i>Sustained</span><span><i style="background:var(--crit)"></i>Gusts</span><span class="pro"><i style="background:var(--muted)"></i>80 m</span></div><div class="scroll">'+ch2+'</div></section></div>'+
    '<div class="panel" id="panel-life" hidden>'+
      '<section class="card"><h2>What to wear and bring</h2>'+gearHtml()+'</section>'+
-     '<section class="card"><div class="hd"><h2>Activity forecast · 5 days</h2></div>'+actHtml()+'</section>'+
+     '<section class="card"><div class="hd"><h2>Activity forecast · next 72 h</h2><span class="sm">Green = every limit met · amber = marginal · red = no-go</span></div><div id="workBody"></div><div class="note">Planning aid only. You set the limits, and they are not safety or regulatory advice. Check conditions yourself and follow local rules.</div></section>'+
      '<section class="card"><div class="hd"><h2>Air quality</h2></div><div id="aqBody"></div></section>'+
      '<section class="card"><div class="hd"><h2>Sun, light &amp; stars</h2></div>'+lightHtml()+'</section>'+
      '<section class="card"><div class="hd"><h2>Coast: tides &amp; waves</h2></div><div id="coastBody"></div></section></div>'+
@@ -1133,7 +1151,6 @@ function render(){
      '<section class="card"><div class="hd"><h2>Model comparison · ECMWF, GFS, ICON, GEM</h2></div><div id="cmpBody"></div></section>'+
      '<section class="card"><div class="hd"><h2>National Weather Service forecast</h2></div><div id="nwsFx"></div></section>'+
      '<section class="card"><div class="hd"><h2>Forecaster discussion</h2></div><div id="afdBody"></div></section></div>'+
-   '<div class="panel" id="panel-work" hidden><section class="card"><div class="hd"><h2>Windows · next 72 h</h2><span class="sm">Green = every limit met · amber = marginal · red = no-go</span></div><div id="workBody"></div><div class="note">Planning aid only. You set the limits, and they are not safety or regulatory advice. Check conditions yourself and follow local rules.</div></section></div>'+
    '<div class="panel" id="panel-field" hidden>'+
      '<section class="card"><div class="hd"><h2>Atmosphere · now</h2></div><div class="tiles">'+air+'</div></section>'+
      '<section class="card"><div class="hd"><h2>Field &amp; soil</h2><label class="sm">Season GDD start <input class="date" type="date" id="gddStart" value="'+esc(prefs.gddStart)+'"></label></div><div class="tiles">'+field+'</div></section></div>';
@@ -1145,7 +1162,7 @@ function render(){
   $("#stamp").textContent="Model: "+ml+" · "+(SAVED==="updating"?"saved copy from ":SAVED==="offline"?"offline, saved copy from ":"loaded ")+clockOf(LOADED_AT||Date.now())+" · "+d.latitude.toFixed(3)+", "+d.longitude.toFixed(3)+" · grid elev "+HT(d.elevation)+" "+htU();
 }
 function showTab(t){
-  var ok=["overview","hourly","map","life","compare","work","field"];if(ok.indexOf(t)<0)t="overview";
+  if(t==="work")t="life";var ok=["overview","hourly","map","life","compare","field"];if(ok.indexOf(t)<0)t="overview";
   if(prefs.mode==="everyday"&&(t==="field"||t==="compare"))t="overview";
   prefs.tab=t;
   document.querySelectorAll("[data-tab]").forEach(function(b){if(b.dataset.tab===t)b.setAttribute("aria-current","true");else b.removeAttribute("aria-current")});
@@ -1805,7 +1822,7 @@ setPanel.querySelectorAll(".seg button").forEach(function(b){b.addEventListener(
 function tabClick(e){
   var b=e.target.closest("button[data-tab]");if(!b)return;
   closeSheet();showTab(b.dataset.tab);savePrefs();
-  var h=$("#hero"),y=h.offsetTop+h.offsetHeight;if(window.scrollY>y)window.scrollTo(0,y);
+  var h=$("#hero"),y=h.offsetTop+h.offsetHeight;if(window.scrollY>y)window.scrollTo({top:y,behavior:"auto"});
 }
 $("#tabs").addEventListener("click",tabClick);$("#bnav").addEventListener("click",tabClick);$("#bnSheet").addEventListener("click",tabClick);
 
