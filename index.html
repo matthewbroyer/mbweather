@@ -493,6 +493,8 @@ button,a,select,summary,label,input[type=checkbox],input[type=range]{touch-actio
   #cmpBody td{white-space:normal}
 }
 @media(max-width:400px){.mh{display:none}}
+/* page scroll must pass through tables and strips; only sideways scroll is contained */
+.scroll,.hours{overscroll-behavior-x:contain;overscroll-behavior-y:auto;overflow-y:hidden}
 
 </style>
 </head>
