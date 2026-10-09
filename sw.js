@@ -1,6 +1,6 @@
 // Fixed on purpose: files are fetched network-first and re-cached on every online visit, so no manual bump is needed.
-const VERSION = 'mbweather-v3';
-const SHELL = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png',
+const VERSION = 'mbweather-v4';
+const SHELL = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png', 'favicon.svg', 'favicon.ico',
   'vendor/leaflet.js', 'vendor/leaflet.css', 'vendor/maplibre-gl.js', 'vendor/maplibre-gl.css',
   'vendor/leaflet-maplibre-gl.js', 'vendor/topojson-client.min.js', 'vendor/countries-50m.json', 'vendor/states-10m.json',
   'vendor/images/layers.png', 'vendor/images/layers-2x.png', 'vendor/images/marker-icon.png', 'vendor/images/marker-icon-2x.png', 'vendor/images/marker-shadow.png'];

@@ -1,5 +1,16 @@
 # mbweather.online release notes
 
+## v1.5 (2026-10-09): Family look
+
+**Look and feel**
+- Matches the other mb apps: solid app bar with a thin sky-blue line on top, underline tabs, square-cornered cards (6 px), solid sky-blue buttons, the shared light/dark switch and neutral page background. The glass bar, page glow and gradient buttons are gone.
+- The condition-colored sky hero stays (it tells you the weather at a glance) but with 8 px corners, no frosted glass and a lighter shadow.
+- Accent is back to Sky Blue #0284C7 (UI text and buttons use #0274B0 for contrast; dark mode #4DB8EE).
+
+**Brand art**
+- New flat logo: a cloud in front of the sun on a sky-blue square, in the same style as the other apps. New `favicon.svg`, `favicon.ico`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, `apple-touch-icon.png` and `og-image.png`.
+- Manifest and theme colors updated. Your settings, places and backups are unchanged.
+
 ## v1.4 (2026-10-09): Modern look, new brand art, strip scroll fix
 
 **Look and feel**

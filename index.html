@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0284C7">
 <title>Weather | Overview</title>
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://tilecache.rainviewer.com https://tiles.openfreemap.org; connect-src 'self' https://api.open-meteo.com https://geocoding-api.open-meteo.com https://archive-api.open-meteo.com https://air-quality-api.open-meteo.com https://marine-api.open-meteo.com https://api.weather.gov https://api.tidesandcurrents.noaa.gov https://api.rainviewer.com https://tiles.openfreemap.org data: blob:; worker-src 'self' blob:; child-src blob:; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <script>(function(){var t="light";try{var p=JSON.parse(localStorage.getItem("wx.prefs")||"{}");if(p&&p.theme==="dark")t="dark"}catch(e){}document.documentElement.setAttribute("data-theme",t)})();</script>
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<link rel="icon" href="favicon.ico" sizes="48x48">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22bg%22%20gradientUnits=%22userSpaceOnUse%22%20x1=%226%22%20y1=%220%22%20x2=%2258%22%20y2=%2264%22%3E%3Cstop%20offset=%220%22%20stop-color=%22%231b46d2%22/%3E%3Cstop%20offset=%22.52%22%20stop-color=%22%231c86e8%22/%3E%3Cstop%20offset=%221%22%20stop-color=%22%2316c4d8%22/%3E%3C/linearGradient%3E%3CradialGradient%20id=%22glow%22%20gradientUnits=%22userSpaceOnUse%22%20cx=%2244%22%20cy=%2219%22%20r=%2224%22%3E%3Cstop%20offset=%220%22%20stop-color=%22%23ffeaa6%22%20stop-opacity=%22.8%22/%3E%3Cstop%20offset=%221%22%20stop-color=%22%23ffeaa6%22%20stop-opacity=%220%22/%3E%3C/radialGradient%3E%3CradialGradient%20id=%22sun%22%20gradientUnits=%22userSpaceOnUse%22%20cx=%2240%22%20cy=%2214%22%20r=%2217%22%3E%3Cstop%20offset=%220%22%20stop-color=%22%23fff4bd%22/%3E%3Cstop%20offset=%22.5%22%20stop-color=%22%23ffc440%22/%3E%3Cstop%20offset=%221%22%20stop-color=%22%23ff8b2a%22/%3E%3C/radialGradient%3E%3ClinearGradient%20id=%22cl%22%20gradientUnits=%22userSpaceOnUse%22%20x1=%220%22%20y1=%2222%22%20x2=%220%22%20y2=%2252%22%3E%3Cstop%20offset=%220%22%20stop-color=%22%23ffffff%22/%3E%3Cstop%20offset=%221%22%20stop-color=%22%23cddff5%22/%3E%3C/linearGradient%3E%3C/defs%3E%3CclipPath%20id=%22cp%22%3E%3Crect%20width=%2264%22%20height=%2264%22%20rx=%2215%22/%3E%3C/clipPath%3E%3Cg%20clip-path=%22url(%23cp)%22%3E%3Crect%20width=%2264%22%20height=%2264%22%20fill=%22url(%23bg)%22/%3E%3Cg%20fill=%22none%22%20stroke=%22%23fff%22%20stroke-opacity=%22.15%22%20stroke-width=%221.4%22%20stroke-linecap=%22round%22%3E%3Cpath%20d=%22M-4%2047C14%2033%2037%2037%2068%2016%22/%3E%3Cpath%20d=%22M-4%2056C16%2041%2040%2046%2068%2025%22/%3E%3Cpath%20d=%22M-4%2065C18%2050%2044%2055%2068%2035%22/%3E%3C/g%3E%3Cg%3E%3Ccircle%20cx=%2244%22%20cy=%2219%22%20r=%2224%22%20fill=%22url(%23glow)%22/%3E%3Ccircle%20cx=%2244%22%20cy=%2219%22%20r=%2211%22%20fill=%22url(%23sun)%22/%3E%3Cellipse%20cx=%2230%22%20cy=%2253.2%22%20rx=%2219%22%20ry=%222.6%22%20fill=%22%230a2a73%22%20fill-opacity=%22.2%22/%3E%3Cg%20fill=%22url(%23cl)%22%3E%3Crect%20x=%2210%22%20y=%2238%22%20width=%2240%22%20height=%2214%22%20rx=%227%22/%3E%3Ccircle%20cx=%2223%22%20cy=%2238%22%20r=%229%22/%3E%3Ccircle%20cx=%2235%22%20cy=%2234%22%20r=%2212%22/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Weather">
-<meta name="theme-color" content="#1c5fd9">
 <meta name="description" content="Free weather forecast, radar map and alerts. No accounts, no ads, no tracking.">
 <link rel="canonical" href="https://mbweather.online/">
 <meta property="og:type" content="website">
@@ -26,7 +26,7 @@
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="mbweather.online: weather that tells you what to do. A warm sun above soft clouds on a blue gradient.">
+<meta property="og:image:alt" content="mbweather.online: weather that tells you what to do. The app's forecast panel with the temperature, rain timing and an outdoor score.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="mbweather.online: weather that tells you what to do">
 <meta name="twitter:description" content="Free forecast, radar and alerts with a rain countdown and an outdoor score. No account, no ads, no tracking.">
@@ -667,6 +667,147 @@ dialog{border-radius:20px}
 .hour strong{font-size:15px;font-weight:650}
 .hour:first-child{background:linear-gradient(180deg,var(--accent-soft),transparent);box-shadow:inset 0 0 0 1px var(--accent-line)}
 .hour:first-child .t{color:var(--accent);font-weight:700}
+
+/* MB SUITE v1 */
+/* =====================================================================
+   MB SUITE v1 — shared design tokens ("Microsoft/Google Alternative" Utility)
+   Same file in every app. Only the 10 accent lines in the APP ACCENT block change.
+   Load order: last <style> in <head> (after the app's own CSS) so it wins.
+   ===================================================================== */
+:root{
+  color-scheme:light;
+  /* type */
+  --font:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"Cascadia Mono",Consolas,"SF Mono",Menlo,monospace;
+  --fs-xs:11.5px; --fs-sm:12.5px; --fs:14px; --fs-md:15px; --fs-lg:17px; --fs-h2:22px; --fs-num:26px;
+  /* geometry: one radius for panels, one for controls, one for overlays */
+  --r:6px; --r-sm:4px; --r-lg:8px;
+  --ctl:38px; --ctl-sm:32px;
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px; --sp-6:24px;
+  --ease:120ms ease;
+  /* neutrals */
+  --bg:#f3f4f6; --surface:#ffffff; --surface-2:#f6f7f9; --surface-3:#eceef2;
+  --ink:#1b1f24; --ink-2:#48505c; --muted:#5f6773;
+  --border:#dfe2e7; --border-strong:#c6cbd3;
+  --hover-band:rgba(20,24,31,.045);
+  /* semantic (keep restrained) */
+  --good:#16a34a; --good-ink:#0b7a35; --warn:#e5a100; --warn-ink:#8a5a00; --crit:#c9302c; --crit-ink:#b42824; --info:#2563eb;
+  /* depth */
+  --shadow:0 1px 2px rgba(20,24,31,.06);
+  --shadow-pop:0 8px 24px -6px rgba(20,24,31,.22),0 1px 3px rgba(20,24,31,.08);
+  --scrim:rgba(10,12,16,.45);
+}
+:root[data-theme="dark"],:root.dark{
+  color-scheme:dark;
+  --bg:#16181c; --surface:#1e2126; --surface-2:#25292f; --surface-3:#2d3238;
+  --ink:#e9ecf0; --ink-2:#b4bbc5; --muted:#8e97a3;
+  --border:#30353c; --border-strong:#434a53;
+  --hover-band:rgba(255,255,255,.05);
+  --good:#22c55e; --good-ink:#4ade80; --warn:#f0b429; --warn-ink:#f5c95c; --crit:#ff6b6b; --crit-ink:#ff8a8a; --info:#60a5fa;
+  --shadow:0 1px 2px rgba(0,0,0,.3);
+  --shadow-pop:0 10px 28px -6px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.03);
+  --scrim:rgba(0,0,0,.6);
+}
+
+/* ---- APP ACCENT (the only per-app block) ---- */
+:root{
+  --brand:#0284C7;                 /* logo badge, OG image, theme-color */
+  --accent:#0274B0; --accent-hover:#025E8F; --accent-ink:#ffffff;
+  --accent-soft:color-mix(in srgb,var(--accent) 9%,transparent);
+  --accent-line:color-mix(in srgb,var(--accent) 38%,transparent);
+}
+:root[data-theme="dark"],:root.dark{
+  --accent:#4DB8EE; --accent-hover:#78CAF2; --accent-ink:#04202F;
+  --accent-soft:color-mix(in srgb,var(--accent) 13%,transparent);
+  --accent-line:color-mix(in srgb,var(--accent) 45%,transparent);
+}
+
+/* ---- primitives every app shares ---- */
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--font);font-size:var(--fs);line-height:1.45;background:var(--bg);color:var(--ink);font-feature-settings:normal;-webkit-font-smoothing:antialiased}
+::selection{background:color-mix(in srgb,var(--accent) 28%,transparent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+input[type=checkbox],input[type=radio],input[type=range],progress{accent-color:var(--accent)}
+.tabular,.num,time{font-variant-numeric:tabular-nums}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important;transition-duration:1ms!important;scroll-behavior:auto!important}}
+@media(pointer:coarse),(max-width:700px){:root{--ctl:44px;--ctl-sm:44px}}
+.tld{font-style:normal;color:var(--accent)}
+
+/* ---- MB SUITE v1 · mbweather.online adapter ----
+   Replaces the v1.4 glossy layer (glass bar, gradient buttons, 16–26px corners) with the family
+   look. The condition-colored sky hero stays: it carries information, so it is this app's one
+   signature component — squared off and without glass. */
+:root{--fg:var(--ink);--accent-fg:var(--accent-ink);--line:var(--border);--grad:var(--accent);--grad-bright:var(--accent);--glow-a:transparent;--glow-b:transparent;--r:6px;--r-sm:4px}
+:root[data-theme="dark"]{--fg:var(--ink);--accent-fg:var(--accent-ink);--line:var(--border)}
+/* map outlines keep their stronger stroke */
+.land,.stateb{stroke:#9aa9ba}
+:root[data-theme="dark"] .land,:root[data-theme="dark"] .stateb{stroke:#3d4e62}
+body::before{display:none}
+body{background:var(--bg)}
+
+/* app bar: solid, accent line on top */
+.top{background:var(--surface);border-bottom:1px solid var(--border);box-shadow:inset 0 3px 0 var(--accent),var(--shadow)}
+.brand{font-weight:650;letter-spacing:-.005em}
+.brand .logo{border-radius:var(--r);box-shadow:none;overflow:hidden}
+.brand .logo svg{display:block}
+.tabs button[aria-current="true"]{background:none;color:var(--accent);box-shadow:inset 0 -2px 0 var(--accent)}
+.bnav button[aria-current="true"] .ic{background:var(--accent-soft)}
+.ob-prog i{background:var(--accent)}
+
+/* controls: solid fills, squared */
+.btn{border-radius:var(--r-sm);border-color:var(--border-strong)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);box-shadow:none}
+.btn.primary:hover{background:var(--accent-hover);border-color:var(--accent-hover);filter:none}
+.btn.primary:active{filter:brightness(.94)}
+.btn.primary[disabled]{background:var(--surface-2);color:var(--muted);border-color:var(--border);box-shadow:none}
+.search input{border-radius:var(--r-sm);border-color:var(--border-strong)}
+.search input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.seg{border-radius:var(--r-sm)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.pk{border-radius:var(--r-sm)}
+.pk[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.themesw .tk{border-radius:var(--r-sm)}
+.themesw .th{border-radius:3px;background:var(--accent)}
+
+/* surfaces */
+.card{border-radius:var(--r);padding:16px}
+.tile,.sbox,.verdict,.win,.alert{border-radius:var(--r-sm)}
+.tile{border:1px solid var(--border)}
+dialog{border-radius:var(--r-lg)}
+.panel-set{border-radius:var(--r)}
+.toast{border-radius:var(--r)}
+.chip{border-radius:var(--r-sm)}
+.chip::before{border-radius:2px;box-shadow:none}
+.range{height:6px;border-radius:2px}
+.range i{border-radius:2px}
+.hour{border-radius:var(--r-sm)}
+.hour:first-child{background:var(--accent-soft)}
+
+/* sky hero: keep the condition colours, drop glass and heavy depth */
+.hero{border-radius:var(--r-lg);box-shadow:var(--shadow);text-shadow:none}
+:root[data-theme="dark"] .hero{box-shadow:var(--shadow)}
+.hero[data-tod="night"]:not([data-sky="clear-night"]){box-shadow:inset 0 0 0 999px rgba(6,12,34,.42)}
+.temp{font-weight:300;text-shadow:none}
+.hero .tag{border-radius:var(--r-sm);backdrop-filter:none;-webkit-backdrop-filter:none}
+.hero .now,.hero .meta>div{border-radius:var(--r-sm);backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(8,20,50,.34)}
+.hero svg.big{filter:none}
+@media(max-width:620px){.hero{border-radius:var(--r)}}
+/* phones: keep the header actions on one row (Settings no longer takes a full-width row) */
+@media(max-width:620px){
+  .top .acts{flex-wrap:nowrap;gap:5px}
+  .top .acts .btn{padding:0 9px;font-size:13px;min-height:40px}
+  .top .acts #setHome{flex:1 1 auto}
+  .top .acts .setwrap,.top .acts>div{flex:none}
+}
+/* bottom bar: same active marker as the rest of the family */
+.bnav button[aria-current="true"]{color:var(--accent);box-shadow:inset 0 2px 0 var(--accent)}
+.bnav button[aria-current="true"] .ic{background:none}
+.acts .btn,.acts .bk-chip{border-radius:var(--r-sm)}
+.bnav button{border-radius:0}
+.bnav .ic{border-radius:var(--r-sm)}
+.panel-set{border-radius:var(--r)}
+.bnav{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--surface);border-top:1px solid var(--border-strong)}
+
 </style>
 </head>
 <body>
@@ -677,15 +818,7 @@ dialog{border-radius:20px}
 <input type="file" id="importFile" accept="application/json,.json" hidden>
 <header class="top" id="top">
   <div class="in bar">
-    <h1 class="brand" id="brand"><span class="logo" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 64 64"><defs>
-<linearGradient id="mbbg" gradientUnits="userSpaceOnUse" x1="6" y1="0" x2="58" y2="64"><stop offset="0" stop-color="#1b46d2"/><stop offset=".52" stop-color="#1c86e8"/><stop offset="1" stop-color="#16c4d8"/></linearGradient>
-<radialGradient id="mbglow" gradientUnits="userSpaceOnUse" cx="44" cy="19" r="24"><stop offset="0" stop-color="#ffeaa6" stop-opacity=".8"/><stop offset="1" stop-color="#ffeaa6" stop-opacity="0"/></radialGradient>
-<radialGradient id="mbsun" gradientUnits="userSpaceOnUse" cx="40" cy="14" r="17"><stop offset="0" stop-color="#fff4bd"/><stop offset=".5" stop-color="#ffc440"/><stop offset="1" stop-color="#ff8b2a"/></radialGradient>
-<linearGradient id="mbcl" gradientUnits="userSpaceOnUse" x1="0" y1="22" x2="0" y2="52"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cddff5"/></linearGradient>
-</defs><clipPath id="mbcp"><rect width="64" height="64" rx="15"/></clipPath><g clip-path="url(#mbcp)"><rect width="64" height="64" fill="url(#mbbg)"/><g fill="none" stroke="#fff" stroke-opacity=".15" stroke-width="1.4" stroke-linecap="round"><path d="M-4 47C14 33 37 37 68 16"/><path d="M-4 56C16 41 40 46 68 25"/><path d="M-4 65C18 50 44 55 68 35"/></g><g><circle cx="44" cy="19" r="24" fill="url(#mbglow)"/>
-<circle cx="44" cy="19" r="11" fill="url(#mbsun)"/>
-<ellipse cx="30" cy="53.2" rx="19" ry="2.6" fill="#0a2a73" fill-opacity=".2"/>
-<g fill="url(#mbcl)"><rect x="10" y="38" width="40" height="14" rx="7"/><circle cx="23" cy="38" r="9"/><circle cx="35" cy="34" r="12"/></g></g></g></svg></span><span class="bt">mbweather.online</span></h1>
+    <h1 class="brand" id="brand"><span class="logo" aria-hidden="true"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#0284C7"/><circle cx="41" cy="22.5" r="10" fill="#fff" fill-opacity=".55"/><path d="M21.5 47h21.5a8 8 0 0 0 .6-16 11 11 0 0 0-21.2-2.2A9.2 9.2 0 0 0 21.5 47z" fill="#0284C7" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" /></svg></span><span class="bt">mbweather<i class="tld">.online</i></span></h1>
     <div class="search">
       <input id="q" type="search" placeholder="Search a town or ZIP" autocomplete="off" aria-label="Search for a place">
       <ul class="results" id="results" aria-live="polite" hidden></ul>
