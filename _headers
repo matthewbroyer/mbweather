@@ -1,0 +1,14 @@
+# Netlify and Cloudflare Pages. GitHub Pages ignores this file (it cannot set headers).
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Strict-Transport-Security: max-age=31536000
+/sw.js
+  Cache-Control: no-cache
+/index.html
+  Cache-Control: no-cache
+/
+  Cache-Control: no-cache
+/manifest.json
+  Cache-Control: no-cache
