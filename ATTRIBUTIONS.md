@@ -5,7 +5,7 @@ Last reviewed: 2026-10-01. Licenses and terms below are from memory of the provi
 | Service / library | Used for | Receives | Cookies / tracking | License / terms | Attribution | Needed to work? |
 |---|---|---|---|---|---|---|
 | Open-Meteo (api, archive, air-quality, marine, geocoding) | Forecasts, history, air quality, tides/waves, place search | Coordinates of the viewed place, search text, visitor IP | None known | Data CC BY 4.0. Free API is for non-commercial use | Required. Shown in footer and About dialog | Yes |
-| US National Weather Service (api.weather.gov) | Alerts, station observations, written forecast and discussion | Coordinates, visitor IP | None known | US government data, public domain | Not required. Credited anyway | No (US only, optional) |
+| US National Weather Service (api.weather.gov) | Alerts, written forecast and discussion | Coordinates, visitor IP | None known | US government data, public domain | Not required. Credited anyway | No (US only, optional) |
 | NOAA CO-OPS (api.tidesandcurrents.noaa.gov) | Tide predictions | Station requests, visitor IP | None known | US government data | Not required. Credited | No |
 | RainViewer (api.rainviewer.com, tilecache.rainviewer.com) | Radar tiles | Tile positions (viewed area), visitor IP | Unknown | RainViewer API terms (check current free-tier limits and attribution wording) | Credited in footer, About and map note | No (radar layer only) |
 | OpenFreeMap (tiles.openfreemap.org) | Street base map (default; the app falls back to a simple outline map if it fails) | Tile positions (viewed area), visitor IP | None known | Free service. Data ODbL (OpenStreetMap), schema OpenMapTiles (CC BY 4.0) | Required. Shown on the map in street mode | No (optional) |

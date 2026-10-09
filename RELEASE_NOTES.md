@@ -13,7 +13,11 @@
 - New `og-image.png` (1200x630) and link-preview tags (Open Graph and Twitter large card) in `index.html`. They point to `https://mbweather.online/`. Change that address in the head of `index.html` if the site lives elsewhere.
 - Manifest colours updated.
 
+**Overview order**
+- Alerts, Today, Next 24 hours, Details, What are you doing today?, 10-day forecast. "Observed now" is removed, and the app no longer asks the National Weather Service for station observations.
+
 **Fix**
+- Settings, Data and the search dropdown opened underneath the weather card. The app bar's frosted blur trapped them; the blur is gone and the bar now stacks above the page.
 - "Next 24 hours" strip: the hour row was a second scroll container nested inside the scroller, which can swallow swipes on some phones. It is now a single scroller. Tested with simulated touch swipes in headless Chromium at 320, 390 and 820 px wide. Not tested on a real phone, Safari or an installed app.
 
 **Known limits**

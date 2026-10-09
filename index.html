@@ -562,7 +562,8 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   background:radial-gradient(900px 420px at 12% -120px,var(--glow-a),transparent 70%),radial-gradient(760px 380px at 96% -60px,var(--glow-b),transparent 70%)}
 
 /* app bar: frosted glass */
-.top{background:color-mix(in srgb,var(--surface) 80%,transparent);-webkit-backdrop-filter:saturate(1.5) blur(16px);backdrop-filter:saturate(1.5) blur(16px);border-bottom:1px solid var(--line);box-shadow:none}
+.top{background:color-mix(in srgb,var(--surface) 94%,transparent);border-bottom:1px solid var(--line);box-shadow:none;z-index:25}
+@media(max-width:860px){.top{position:relative}}
 .brand{font-weight:700;letter-spacing:-.02em}
 .brand .logo{border-radius:23%;box-shadow:0 5px 14px -5px rgba(28,95,217,.6)}
 
@@ -772,7 +773,7 @@ dialog{border-radius:20px}
 
   <footer class="foot">
     <span id="stamp"></span>
-    <span>Forecasts are estimates and can be wrong. Weather data: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> (CC BY 4.0) · alerts and observations: <a href="https://www.weather.gov/" target="_blank" rel="noopener noreferrer">NWS</a> · radar: <a href="https://www.rainviewer.com/" target="_blank" rel="noopener noreferrer">RainViewer</a> · <button class="linkbtn" id="aboutBtn" type="button">About, privacy and terms</button></span>
+    <span>Forecasts are estimates and can be wrong. Weather data: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> (CC BY 4.0) · alerts: <a href="https://www.weather.gov/" target="_blank" rel="noopener noreferrer">NWS</a> · radar: <a href="https://www.rainviewer.com/" target="_blank" rel="noopener noreferrer">RainViewer</a> · <button class="linkbtn" id="aboutBtn" type="button">About, privacy and terms</button></span>
   </footer>
 </div>
 
@@ -815,7 +816,7 @@ dialog{border-radius:20px}
   <p>The app has no server of its own. To work, your browser contacts these services directly. Each one sees your IP address and browser details, like any website, and each has its own privacy policy.</p>
   <ul>
     <li><b>Open-Meteo</b> gets the coordinates of the place you view (and a grid of nearby coordinates for map layers), plus the text you type when you search for a place.</li>
-    <li><b>US National Weather Service (api.weather.gov)</b> gets those coordinates for alerts, nearby station observations and the written forecast.</li>
+    <li><b>US National Weather Service (api.weather.gov)</b> gets those coordinates for alerts and the written forecast.</li>
     <li><b>NOAA Tides and Currents</b> gets requests for tide data for the nearest station.</li>
     <li><b>RainViewer</b> serves radar images. Its requests reveal the map area you are viewing.</li>
     <li><b>OpenFreeMap</b> serves street map tiles when you open the Map tab. If it cannot be reached, the app shows a simple outline map instead. Its requests reveal the map area you are viewing.</li>
@@ -838,7 +839,7 @@ dialog{border-radius:20px}
   <h3>Credits</h3>
   <ul>
     <li>Weather, air quality, marine and geocoding data: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo.com</a>, licensed CC BY 4.0.</li>
-    <li>Alerts, observations and forecasts: US National Weather Service. Tides: NOAA CO-OPS. US government data.</li>
+    <li>Alerts and forecasts: US National Weather Service. Tides: NOAA CO-OPS. US government data.</li>
     <li>Radar: <a href="https://www.rainviewer.com/" target="_blank" rel="noopener noreferrer">RainViewer</a>.</li>
     <li>Map: Leaflet (BSD-2), MapLibre GL (BSD-3), topojson-client (ISC), Natural Earth and US Census boundaries via world-atlas and us-atlas, and OpenFreeMap with OpenMapTiles and OpenStreetMap contributors (street map).</li>
   </ul>
@@ -967,7 +968,7 @@ function load(silent){
     if(id!==reqId)return;
     cachePut(d);setData(d,false);LOADED_AT=Date.now();SAVED=0;
     if(shown)hideToast();
-    render();fetchNws();fetchGdd(id);loadObs();if(!EX.climate)loadClimate();
+    render();fetchNws();fetchGdd(id);if(!EX.climate)loadClimate();
   }).catch(function(e){
     if(id!==reqId)return;
     if(silent&&DATA)return;
@@ -1387,11 +1388,10 @@ function render(){
    '<div class="panel" id="panel-overview">'+
      '<section class="card"><div class="hd"><h2>Alerts</h2></div><div id="alertsBody"></div></section>'+
      '<section class="card"><div class="hd"><h2>Today</h2><button class="btn" id="copyFx" type="button">Copy forecast text</button></div>'+nowHtml()+'<p class="summary">'+esc(summary())+'</p>'+changesHtml()+best+'</section>'+
-     '<section class="card"><div class="hd"><h2>What are you doing today?</h2></div><div id="actBody"></div></section>'+
      '<section class="card"><h2>Next 24 hours</h2><div class="scroll hscroll"><div class="hours">'+hs+'</div></div></section>'+
-     '<section class="card"><h2>10-day forecast</h2><div>'+days+'</div></section>'+
-     '<section class="card"><h2>Observed now</h2><div id="obsBody"></div></section>'+
-     '<section class="card"><h2>Details</h2><div class="tiles">'+basic+'</div></section></div>'+
+     '<section class="card"><h2>Details</h2><div class="tiles">'+basic+'</div></section>'+
+     '<section class="card"><div class="hd"><h2>What are you doing today?</h2></div><div id="actBody"></div></section>'+
+     '<section class="card"><h2>10-day forecast</h2><div>'+days+'</div></section></div>'+
    '<div class="panel" id="panel-hourly" hidden>'+
      '<section class="card"><div class="hd"><h2>Hourly · next 36 h</h2><span class="sm">Amber gust ≥ 25 mph · red ≥ 40 mph · blue = precipitation</span></div>'+table+'</section>'+
      '<section class="card"><div class="hd"><h2>Next 72 hours</h2></div>'+
@@ -1413,7 +1413,7 @@ function render(){
 
   hFade();var gs=$("#gddStart");if(gs)gs.onchange=function(){if(/^\d{4}-\d{2}-\d{2}$/.test(this.value)){prefs.gddStart=this.value;savePrefs();gddState=null;fetchGdd(reqId)}};
   var cf=$("#copyFx");if(cf)cf.onclick=function(){copyText(forecastText(),this)};
-  applyMode();drawWork();drawAct();drawAlerts();drawGdd();drawObs();drawClimate();drawLife();drawCompare();drawNws();if(MAP.grid)drawMarkers();
+  applyMode();drawWork();drawAct();drawAlerts();drawGdd();drawClimate();drawLife();drawCompare();drawNws();if(MAP.grid)drawMarkers();
   var ml=$("#model").selectedOptions[0].textContent;
   $("#stamp").textContent="Model: "+ml+" · "+(SAVED==="updating"?"saved copy from ":SAVED==="offline"?"offline, saved copy from ":"loaded ")+stampOf(LOADED_AT||Date.now())+" · "+d.latitude.toFixed(3)+", "+d.longitude.toFixed(3)+" · grid elev "+HT(d.elevation)+" "+htU();
 }
