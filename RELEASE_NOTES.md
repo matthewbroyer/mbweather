@@ -1,5 +1,15 @@
 # mbweather.online release notes
 
+## v1.6 (2026-10-09): Paper Cutouts look
+
+**Look and feel**
+- Lighter, fresher surface (MB Suite v2 "Paper Cutouts"): a soft sky-blue tint across the top of each page, a gradient accent line on the app bar, a gradient tab underline and bottom-bar marker, and gradient primary buttons and onboarding progress. The condition-colored sky hero is unchanged and gets no banner.
+- Layout, features and forecasts are unchanged.
+
+**Brand art**
+- New logo and icons: the same cloud and sun on a softer gradient badge. New `favicon.svg`, `favicon.ico`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, `apple-touch-icon.png` and `og-image.png`. Your settings, places and backups are unchanged.
+- The "Official Web App" label under the name now reads v1.1.
+
 ## v1.5 (2026-10-09): Family look
 
 **Look and feel**
