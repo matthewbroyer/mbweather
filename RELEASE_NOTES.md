@@ -1,5 +1,36 @@
 # mbweather.online release notes
 
+## v1.7 (2026-10-13): Sidebar, new logo, share images, cleaner install card
+
+**Navigation**
+- Sections moved to a left sidebar on computers (Overview, Hourly, Map, Plan, plus Compare and Field & air in Pro view), a slim icon rail on tablets, and the same bottom bar as before on phones. About & help sits at the bottom of the sidebar.
+- The top bar now names the section you are on, next to the place search. Place search, Locate, Data, Settings, the light/dark switch and Set as home are all still one click away.
+- The logo, the name and the "Official Web App" line are one link back to Overview from any section.
+- The backup chip ("Backed up 3 days ago") shows on wide screens. On smaller screens a dot on Data tells you a backup is due, as on phones before.
+
+**Brand art**
+- New logo and icons: `favicon.svg`, `favicon.ico`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, `apple-touch-icon.png` and `og-image.png`. Installed copies pick them up on the next visit.
+- The first setup screen shows the logo with a small sun, cloud and raindrop cutout.
+- The "Official Web App" label now matches these notes: v1.7.
+
+**Install as app**
+- The Install card in Settings now matches the other mb apps. It shows an Install button when your browser offers one, Share then Add to Home Screen on iPhone and iPad, and "Installed on this device" inside the installed app. Where installing isn't possible it no longer shows a card; About & help still explains how to install.
+- The installed app is named "Weather".
+
+**Share images**
+- New Share buttons on the Today card and the 10-day forecast. They make a square picture on your device with today's conditions, high and low, outdoor score and rain chance, or the 10-day highs, lows and dry days. Share it from your phone's share sheet or save it as a PNG.
+- Your place name is left off unless you tick "Show place name". Coordinates are never on the picture. Nothing is uploaded.
+
+**Search**
+- Added `robots.txt`, `sitemap.xml` and a structured-data description of the app for search engines. Link previews use the new image.
+
+**Fixes**
+- About, privacy: explains share images. The saved-forecast note now matches what the app does (latest forecast for up to 3 places, used for up to 24 hours with no signal).
+- Hosting: added `.htaccess` for Apache with the same headers as `_headers`.
+
+**Known limits**
+- Tested in headless Chromium with a mocked forecast at 1280, 1024, 820, 768, 390 and 360 px, light and dark. Not tested on real phones, Safari, Firefox, with a real install prompt or with a screen reader.
+
 ## v1.6 (2026-10-09): Paper Cutouts look
 
 **Look and feel**

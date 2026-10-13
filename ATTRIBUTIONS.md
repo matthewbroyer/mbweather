@@ -21,3 +21,5 @@ Removed in this audit: Google Fonts (Instrument Sans, JetBrains Mono). The app n
 Icons and weather symbols are drawn inline in the app's own code. The home-screen PNG icons are rendered from the app's own logo (favicon.svg). No stock images, no icon libraries, no analytics, no ads, no payment or AI services.
 
 All map libraries and boundary data are served from this site's own `vendor/` folder (no CDN). License texts are in `vendor/LICENSE-*.txt`. Last reviewed for this change: 2026-10-05.
+
+Brand art (2026-10-13): the logo, favicons, app icons and `og-image.png` were made by the app's developer. The setup-screen art is the MB Suite "NA-09 Sun & Cloud" paper-cutout template, drawn inline in the app's own code. No third-party assets.
