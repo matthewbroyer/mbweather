@@ -1,5 +1,11 @@
 # mbweather.online release notes
 
+## 1.8 · 2026-10-14
+- About card at the bottom of Settings: version, release date, links and copyright in one place.
+- Installing from matthewbroyer.com: the hub's Install button opens the app with a short install prompt.
+- New "page not found" page that matches the app and links back to it.
+- The Install card in Settings now sits at the bottom, after Advanced, with the About card below it.
+
 ## v1.7 (2026-10-13): Sidebar, new logo, share images, cleaner install card
 
 **Navigation**
