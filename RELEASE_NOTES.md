@@ -1,5 +1,14 @@
 # mbweather.online release notes
 
+## 1.9 · 2026-10-14
+- The top bar now matches the other mb apps: one slim row with Search, Data, the light/dark switch and Settings. On phones it no longer takes two rows.
+- The place search, Locate and Set as home moved into a location row at the top of the page, right above the current conditions. It is there on every section, so you can change places from Hourly, Map or Plan too.
+- Search in the top bar (or the / key) jumps straight to the place search.
+- First visit: the app now opens on a real forecast for Mount Washington, NH, marked "Sample location", so you can look around without sharing your location. Search a town or tap Locate to switch to your own; the sample never comes back after that (unless you clear all data), and it is never saved as your home.
+- The last place you looked up is now remembered after a reload when you have no home set. If you have a home, the app still opens on it.
+- Calmer current-conditions colors. Fog is now a plain soft grey-blue with no stripes, and every sky (clear, cloudy, rain, snow, storm, night) keeps the text and the Wind, Humidity, UV and Sunset boxes easy to read.
+- On computers the backup chip ("Never backed up", "Backed up 2 days ago") now shows from 1024px wide. On smaller screens the dot on Data still tells you a backup is due.
+
 ## 1.8 · 2026-10-14
 - About card at the bottom of Settings: version, release date, links and copyright in one place.
 - Installing from matthewbroyer.com: the hub's Install button opens the app with a short install prompt.

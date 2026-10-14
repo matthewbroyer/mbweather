@@ -999,34 +999,17 @@ dialog.mb-share::backdrop{background:var(--scrim)}
 </style>
 <style id="mbweather-v3">
 /* =====================================================================
-   MB SUITE v3 · mbweather.online adapter (loads after mb-suite-sidebar.css and mb-suite-v3.css)
-   Weather keeps its sky hero as the first thing in .wrap and has no home banner.
-   Its page bar carries more than most apps (place search, Set as home, Locate, backup chip,
-   Data, Settings, theme switch), so the bar may wrap to a second row instead of overflowing.
+   MB SUITE v3.2 · mbweather.online adapter (loads after mb-suite-sidebar.css and mb-suite-v3.css;
+   mb-suite-topbar.css loads after this and draws the bar controls)
+   v1.9: the page bar is the standard single 56px bar (Search · backup chip · Data · theme · Settings).
+   The place field, Locate and Set as home live in the location row at the top of the page,
+   above the sky hero, on every section.
    ===================================================================== */
-.page-bar{flex-wrap:wrap;row-gap:8px;padding-top:11px;padding-bottom:8px}
 .page-title{flex:none}
-.page-bar .search{flex:1 1 180px;max-width:420px;min-width:150px}
-.page-bar .actions{flex-wrap:wrap;justify-content:flex-end;gap:6px}
-.page-bar .actions>.setwrap{min-height:0}
-.page-bar .themesw{min-height:var(--ctl-sm)}
-/* the backup chip moves into the Data menu's status line on narrower screens; Data shows a dot when a backup is due */
-@media (max-width:1279px){.page-bar .bk-chip{display:none}.stale .bkdot{display:inline-block}}
+.page-bar .actions>.setwrap{display:flex;align-items:center;min-height:0}
 .side-nav .uic{width:18px;height:18px}
 .bnav .uic{width:20px;height:20px}
-/* phones: two-row top bar (brand + search, then actions); not sticky so it never covers the forecast */
 @media (max-width:767px){
-  .page-bar{position:relative;z-index:45;padding-top:9px;padding-bottom:9px}
-  .page-bar{row-gap:4px;gap:4px 6px}
-  /* row 1: brand, search, Locate · row 2: Data, Settings, theme, home actions (DOM order = visual order) */
-  .page-bar .actions{display:contents}
-  .page-bar::after{content:"";flex-basis:100%;height:0;order:2}
-  .page-bar .phone-brand{flex:none;order:0}
-  .page-bar .search{flex:1 1 0;max-width:none;min-width:0;order:1}
-  .page-bar #locate{order:1}
-  .page-bar .actions>:not(#locate){order:3}
-  .page-bar .actions .btn{padding:0 11px}
-  .page-bar #setHome,.page-bar #goHome{flex:1 1 auto}
   /* the page title is still the page's h1 for screen readers; the brand names the app visually */
   .page-bar .page-title{display:block;position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .bn-sheet{position:fixed;right:8px;bottom:calc(64px + env(safe-area-inset-bottom,0px));z-index:60;flex-direction:column;min-width:180px;padding:4px;
@@ -1037,11 +1020,66 @@ dialog.mb-share::backdrop{background:var(--scrim)}
   .bn-sheet button[aria-current="page"]{box-shadow:inset 3px 0 0 var(--accent);color:var(--accent);font-weight:600}
   .toast{bottom:calc(68px + env(safe-area-inset-bottom,0px))}
 }
-@media (max-width:520px){.page-bar .actions .btn{padding:0 9px}}
-/* small phones: the brand link shows the badge only so the place search keeps its width */
-@media (max-width:430px){.page-bar .phone-brand .bt{display:none}}
 .bn-sheet{display:none}
 @media (min-width:768px){.bn-sheet{display:none!important}}
+
+/* ---------- location row: place field · Locate · home (page toolbar pattern, 36px / 42px on phones) ---------- */
+.loc-row{display:flex;align-items:center;gap:8px}
+.loc-row .search{position:relative;flex:1 1 auto;min-width:0;max-width:none}
+.loc-row .search .loc-ic{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--muted);pointer-events:none;z-index:1}
+.loc-row .search input{box-sizing:border-box;width:100%;height:36px;min-height:36px;padding:0 10px 0 36px;font-size:14px;color:var(--ink);
+  background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--r-sm)}
+.loc-row .search input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.loc-row .btn{box-sizing:border-box;height:36px;min-height:36px;padding:0 12px;font-size:13.5px;white-space:nowrap;border-radius:var(--r-sm)}
+.loc-row .btn>svg{width:18px;height:18px;flex:none}
+/* home control: house button right after Locate. Pressed (accent fill) when this place is home; Go home only when away from it */
+.loc-row .hb,.loc-row .hb.primary{background:var(--surface);color:var(--ink-2,var(--ink));border:1px solid var(--border-strong);filter:none}
+.loc-row .hb.primary{background:var(--surface)!important;border-color:var(--accent-line,var(--accent))!important;color:var(--accent)!important;font-weight:500}
+.loc-row .hb.primary:hover{background:var(--accent-soft)!important}
+.loc-row .hb:hover{background:var(--surface-2)}
+.loc-row #setHome[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-fg,#fff);cursor:default}
+.loc-row #setHome[aria-pressed="true"] .hf{fill:currentColor;fill-opacity:.25}
+.loc-row .hb:focus-visible,.loc-row #locate:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.loc-row .results{z-index:35}
+.loc-hint{margin:-4px 0 0;font-size:13px;line-height:1.4;color:var(--muted)}
+.hero .tag.tag-demo{border-style:dashed}
+@media (max-width:767px){
+  .loc-row{gap:8px}
+  .loc-row .search input,.loc-row .btn{height:42px;min-height:42px}
+  .loc-row .search input{font-size:16px}
+  .loc-row #locate,.loc-row .hb{flex:none;width:42px;padding:0}
+  .loc-row #locate .lbl,.loc-row .hb .lbl{display:none}
+}
+
+/* ---------- sky hero v1.9: calm, readable condition colours ----------
+   Every sky is a gentle vertical gradient whose lightest point keeps white text at 4.5:1 or better.
+   No stripes or patterns behind text: rain streaks and snowflakes sit only around the condition art (top right). */
+.hero{--sky:linear-gradient(180deg,#1c64c4 0%,#2b6fca 100%)}
+.hero[data-sky="clear-day"]::before{background:radial-gradient(circle at 88% 20%,rgba(255,240,190,.55) 0,rgba(255,220,140,.22) 10%,transparent 28%)}
+.hero[data-sky="clear-day"]::after{background:none}
+.hero[data-sky="clear-night"]{--sky:linear-gradient(180deg,#0b1636 0%,#1e2d68 100%)}
+.hero[data-sky="cloud"]{--sky:linear-gradient(180deg,#4a5d74 0%,#5a6e84 100%)}
+.hero[data-sky="cloud"]::before{background:radial-gradient(ellipse 40% 26% at 82% 22%,rgba(255,255,255,.12),transparent 70%)}
+.hero[data-sky="rain"]{--sky:linear-gradient(180deg,#1f334b 0%,#36536f 100%)}
+.hero[data-sky="rain"]::before{background:none}
+.hero[data-sky="rain"]::after{background:repeating-linear-gradient(103deg,rgba(255,255,255,.10) 0 1.2px,transparent 1.2px 15px);
+  -webkit-mask-image:radial-gradient(ellipse 30% 45% at 86% 26%,#000 0,transparent 100%);mask-image:radial-gradient(ellipse 30% 45% at 86% 26%,#000 0,transparent 100%)}
+.hero[data-sky="snow"]{--sky:linear-gradient(180deg,#48607c 0%,#566e8a 100%)}
+.hero[data-sky="snow"]::after{-webkit-mask-image:radial-gradient(ellipse 32% 48% at 86% 26%,#000 0,transparent 100%);mask-image:radial-gradient(ellipse 32% 48% at 86% 26%,#000 0,transparent 100%)}
+.hero[data-sky="storm"]{--sky:linear-gradient(180deg,#141a30 0%,#2f3758 100%)}
+.hero[data-sky="storm"]::before{background:radial-gradient(circle at 86% 24%,rgba(255,226,140,.20) 0,transparent 26%)}
+/* fog: one flat, soft grey-blue. No bands. */
+.hero[data-sky="fog"]{--sky:linear-gradient(180deg,#56697b 0%,#5e7183 100%)}
+.hero[data-sky="fog"]::before,.hero[data-sky="fog"]::after{background:none}
+/* night: a slightly deeper shade of the same sky (was a heavy navy wash) */
+.hero[data-tod="night"]:not([data-sky="clear-night"]){box-shadow:inset 0 0 0 999px rgba(8,14,32,.28)}
+/* text chips and stat tiles: one solid-looking dark tint in every sky, no blur */
+.hero .tag{background:rgba(6,14,30,.30);border:1px solid rgba(255,255,255,.38);color:#fff}
+.hero .now,.hero .meta>div,
+.hero[data-sky="clear-day"] .now,.hero[data-sky="clear-day"] .meta>div,
+.hero[data-sky="fog"] .now,.hero[data-sky="fog"] .meta>div{background:rgba(6,14,30,.24);border:1px solid rgba(255,255,255,.16)}
+.hero .meta b{opacity:1;color:#fff}
+
 /* share dialog: the app's .sm class is small muted text, so give the close button normal button text */
 .mb-share .ms-head .btn{font-size:13.5px;color:var(--ink)}
 .mb-share-btn{gap:6px}
@@ -1055,6 +1093,7 @@ dialog.mb-share::backdrop{background:var(--scrim)}
 
 <!-- release tags added by mb-release 2026-10-14 -->
 <meta name="application-name" content="Weather">
+<link rel="stylesheet" href="mb-suite-topbar.css">
 </head>
 <body class="mb-shell">
 <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden"><defs><radialGradient id="wxSun" cx=".38" cy=".32" r=".8"><stop offset="0" stop-color="#fff2b4"/><stop offset=".55" stop-color="#ffc53f"/><stop offset="1" stop-color="#ff9a28"/></radialGradient><linearGradient id="wxCloud" gradientUnits="userSpaceOnUse" x1="0" y1="10" x2="0" y2="38"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#bfd3ec"/></linearGradient><linearGradient id="wxMoon" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbfcff"/><stop offset="1" stop-color="#b7c6ea"/></linearGradient><linearGradient id="wxBolt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe985"/><stop offset="1" stop-color="#ffab1f"/></linearGradient></defs></svg>
@@ -1063,7 +1102,7 @@ dialog.mb-share::backdrop{background:var(--scrim)}
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 <input type="file" id="importFile" accept="application/json,.json" hidden>
 <aside class="mb-side" aria-label="App">
-  <a class="brand" href="./" aria-label="mbweather.online: go to Overview"><span class="logo"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><defs><linearGradient id="mbwe-s-g25" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="54" y2="64"><stop offset="0" stop-color="#2595cf"/><stop offset=".55" stop-color="#0284C7"/><stop offset="1" stop-color="#026a9f"/></linearGradient><clipPath id="mbwe-s-c25"><rect width="64" height="64" rx="18"/></clipPath><linearGradient xlink:href="#mbwe-s-g25" id="mbwe-s-linearGradient5" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="54" y2="64"/></defs><g clip-path="url(#mbwe-s-c25)"><rect width="64" height="64" fill="url(#mbwe-s-g25)"/><g transform="translate(-0.66503232,1.1221731)"><circle cx="41" cy="22.5" r="10" fill="#ffffff" fill-opacity="0.55"/><path d="M 21.5,47 H 43 A 8.005623,8.005623 0 0 0 43.6,31 11,11 0 0 0 22.4,28.8 9.2,9.2 0 0 0 21.5,47 Z" fill="url(#mbwe-s-g25)" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" style="fill:url(#mbwe-s-linearGradient5)"/></g></g></svg></span><span class="bt"><b>mbweather<i class="tld">.online</i></b><span>Official Web App · v1.8</span></span></a>
+  <a class="brand" href="./" aria-label="mbweather.online: go to Overview"><span class="logo"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><defs><linearGradient id="mbwe-s-g25" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="54" y2="64"><stop offset="0" stop-color="#2595cf"/><stop offset=".55" stop-color="#0284C7"/><stop offset="1" stop-color="#026a9f"/></linearGradient><clipPath id="mbwe-s-c25"><rect width="64" height="64" rx="18"/></clipPath><linearGradient xlink:href="#mbwe-s-g25" id="mbwe-s-linearGradient5" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="54" y2="64"/></defs><g clip-path="url(#mbwe-s-c25)"><rect width="64" height="64" fill="url(#mbwe-s-g25)"/><g transform="translate(-0.66503232,1.1221731)"><circle cx="41" cy="22.5" r="10" fill="#ffffff" fill-opacity="0.55"/><path d="M 21.5,47 H 43 A 8.005623,8.005623 0 0 0 43.6,31 11,11 0 0 0 22.4,28.8 9.2,9.2 0 0 0 21.5,47 Z" fill="url(#mbwe-s-g25)" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" style="fill:url(#mbwe-s-linearGradient5)"/></g></g></svg></span><span class="bt"><b>mbweather<i class="tld">.online</i></b><span>Official Web App · v1.9</span></span></a>
   <nav class="side-nav" id="tabs" aria-label="Sections">
       <button type="button" data-tab="overview" aria-current="page"><svg class="uic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="9" r="3.2"/><path d="M9 2.5v1.6M2.5 9h1.6M4.4 4.4l1.1 1.1M13.6 4.4l-1.1 1.1"/><path d="M8 20h9a3.5 3.5 0 0 0 .4-7 5 5 0 0 0-9.6 1.3A3 3 0 0 0 8 20z"/></svg><span>Overview</span></button>
       <button type="button" data-tab="hourly"><svg class="uic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg><span>Hourly</span></button>
@@ -1078,17 +1117,13 @@ dialog.mb-share::backdrop{background:var(--scrim)}
 </aside>
 <div class="mb-main">
 <header class="page-bar" id="top">
-  <a class="brand phone-brand" href="./" aria-label="mbweather.online: go to Overview"><span class="logo"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><defs><linearGradient id="mbwe-p-g25" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="54" y2="64"><stop offset="0" stop-color="#2595cf"/><stop offset=".55" stop-color="#0284C7"/><stop offset="1" stop-color="#026a9f"/></linearGradient><clipPath id="mbwe-p-c25"><rect width="64" height="64" rx="18"/></clipPath><linearGradient xlink:href="#mbwe-p-g25" id="mbwe-p-linearGradient5" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="54" y2="64"/></defs><g clip-path="url(#mbwe-p-c25)"><rect width="64" height="64" fill="url(#mbwe-p-g25)"/><g transform="translate(-0.66503232,1.1221731)"><circle cx="41" cy="22.5" r="10" fill="#ffffff" fill-opacity="0.55"/><path d="M 21.5,47 H 43 A 8.005623,8.005623 0 0 0 43.6,31 11,11 0 0 0 22.4,28.8 9.2,9.2 0 0 0 21.5,47 Z" fill="url(#mbwe-p-g25)" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" style="fill:url(#mbwe-p-linearGradient5)"/></g></g></svg></span><span class="bt"><b>mbweather<i class="tld">.online</i></b><span>Official Web App · v1.8</span></span></a>
+  <a class="brand phone-brand" href="./" aria-label="mbweather.online: go to Overview"><span class="logo"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><defs><linearGradient id="mbwe-p-g25" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="54" y2="64"><stop offset="0" stop-color="#2595cf"/><stop offset=".55" stop-color="#0284C7"/><stop offset="1" stop-color="#026a9f"/></linearGradient><clipPath id="mbwe-p-c25"><rect width="64" height="64" rx="18"/></clipPath><linearGradient xlink:href="#mbwe-p-g25" id="mbwe-p-linearGradient5" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="54" y2="64"/></defs><g clip-path="url(#mbwe-p-c25)"><rect width="64" height="64" fill="url(#mbwe-p-g25)"/><g transform="translate(-0.66503232,1.1221731)"><circle cx="41" cy="22.5" r="10" fill="#ffffff" fill-opacity="0.55"/><path d="M 21.5,47 H 43 A 8.005623,8.005623 0 0 0 43.6,31 11,11 0 0 0 22.4,28.8 9.2,9.2 0 0 0 21.5,47 Z" fill="url(#mbwe-p-g25)" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" style="fill:url(#mbwe-p-linearGradient5)"/></g></g></svg></span><span class="bt"><b>mbweather<i class="tld">.online</i></b><span>Official Web App · v1.9</span></span></a>
   <h1 class="page-title" id="pageTitle">Overview</h1>
-  <div class="search">
-    <input id="q" type="search" placeholder="Search a town or ZIP" autocomplete="off" aria-label="Search for a place">
-    <ul class="results" id="results" aria-live="polite" hidden></ul>
-  </div>
   <div class="actions">
-      <button class="btn" id="locate" type="button" title="Use my current location">Locate</button>
-      <button class="bk-chip" id="bkChip" type="button" title="Save backup now">Never backed up</button>
+      <button class="tb tb-search tb-opt" id="findBtn" type="button" aria-label="Search for a place" title="Search for a town or ZIP (press /)"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="tb-lbl">Search…</span><kbd>/</kbd></button>
+      <button class="bk-chip tb-chip" id="bkChip" type="button" title="Save backup now">Never backed up</button>
       <div class="setwrap">
-        <button class="btn" id="dataBtn" type="button" aria-expanded="false" aria-controls="dataMenu">Data<span class="bkdot" aria-hidden="true"></span></button>
+        <button class="tb" id="dataBtn" type="button" aria-expanded="false" aria-controls="dataMenu" aria-label="Data menu"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg><span class="tb-lbl">Data</span><svg class="tb-chev" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg><span class="bkdot tb-dot" aria-hidden="true" hidden></span></button>
         <div class="panel-set data" id="dataMenu" hidden>
           <button class="btn primary dm-save" id="saveNow" type="button"><span>Save backup now</span><kbd id="saveKbd">Ctrl+S</kbd></button>
           <button class="dm-item" id="exportJson" type="button"><b>Export All (JSON)…</b><span>Home, settings and Windows limits. Choose where to save it.</span></button>
@@ -1099,8 +1134,9 @@ dialog.mb-share::backdrop{background:var(--scrim)}
           <div class="dm-foot" id="bkStatus" aria-live="polite"></div>
         </div>
       </div>
+      <button type="button" class="themesw" id="themeSw" role="switch" aria-checked="false" aria-label="Dark mode" title="Dark mode"><span class="tk"><svg class="i-sun" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10" cy="10" r="3.2"/><path d="M10 2.5v1.8M10 15.7v1.8M2.5 10h1.8M15.7 10h1.8M4.7 4.7l1.3 1.3M14 14l1.3 1.3M4.7 15.3 6 14M14 6l1.3-1.3"/></svg><svg class="i-moon" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true" fill="currentColor"><path d="M16.5 12.2A6.6 6.6 0 0 1 7.8 3.5a6.6 6.6 0 1 0 8.7 8.7Z"/></svg><i class="th"></i></span></button>
       <div class="setwrap">
-        <button class="btn" id="settingsBtn" type="button" aria-expanded="false" aria-controls="settings">Settings</button>
+        <button class="tb" id="settingsBtn" type="button" aria-expanded="false" aria-controls="settings" aria-label="Settings"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span class="tb-lbl">Settings</span></button>
         <div class="panel-set" id="settings" hidden>
           <section class="grp"><h4>Display</h4>
             <div class="fld">View
@@ -1133,19 +1169,27 @@ dialog.mb-share::backdrop{background:var(--scrim)}
             <svg class="uic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6M12 7.5v.01"/></svg>
             <div>
               <b>mbweather.online™</b>
-              <p>Version 1.8 · Oct 14, 2026</p>
+              <p>Version 1.9 · Oct 14, 2026</p>
               <p class="mb-about-links"><button type="button" data-about-go="privacy">Privacy</button><button type="button" data-about-go="terms">Terms</button><a href="https://matthewbroyer.com/">More free apps at matthewbroyer.com</a></p>
               <p class="mb-about-copy">© 2026 Matthew Broyer. All rights reserved.</p>
             </div>
           </div>
         </div>
       </div>
-      <button class="themesw" id="themeSw" type="button" role="switch" aria-checked="false" aria-label="Dark mode" title="Light / dark"><span class="tk"><span class="th"></span></span></button>
-      <button class="btn" id="goHome" type="button" hidden>Go to home</button>
-      <button class="btn primary" id="setHome" type="button">Set as home</button>
   </div>
 </header>
 <div class="wrap">
+  <div class="loc-row" role="search" aria-label="Location">
+    <div class="search">
+      <svg class="loc-ic" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Search a town or ZIP" autocomplete="off" aria-label="Search for a place">
+      <ul class="results" id="results" aria-live="polite" hidden></ul>
+    </div>
+    <button class="btn" id="locate" type="button" title="Use my current location" aria-label="Use my current location"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg><span class="lbl">Locate</span></button>
+    <button class="btn hb primary" id="setHome" type="button" aria-pressed="false" aria-label="Set as home" title="Set as home"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path class="hf" d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg><span class="lbl">Set home</span></button>
+    <button class="btn hb" id="goHome" type="button" hidden aria-label="Go to home" title="Go to home"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg><span class="lbl">Go home</span></button>
+  </div>
+  <p class="loc-hint" id="locHint" hidden>Showing Mount Washington, NH. Search a town or tap Locate for your own forecast.</p>
   <div id="hero" role="region" aria-label="Current conditions"></div>
   <main id="panels" tabindex="-1"></main>
   <noscript><p class="status">mbweather.online needs JavaScript to load forecasts. It is a free weather app with a radar map, alerts, a rain countdown and an outdoor score. No account, no ads, no tracking.</p></noscript>
@@ -1569,11 +1613,15 @@ var store={
 };
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 
-var FALLBACK={name:"Exeter, NH",lat:42.9815,lon:-70.9478};
+/* demo place for first visits: a real forecast with no location request. Never saved as home or as the last place. */
+var DEMO={name:"Mount Washington, NH",lat:44.2706,lon:-71.3033};
+var FALLBACK=DEMO;
 var home=store.get("wx.home",null);
 var LANG=(navigator.language||"en-US");
 var prefs=Object.assign({tu:(/^en(-US)?$/i.test(LANG)?"F":"C"),wu:(/^en-(US|GB)$|^en$/i.test(LANG)?"mph":"kmh"),model:"best_match",notify:false,mode:"everyday",tab:"overview",theme:"auto",act:"easy",gddStart:new Date().getFullYear()+"-04-01"},store.get("wx.prefs",{}));
-var loc=home||FALLBACK;
+var lastPlace=store.get("wx.place",null);if(!(lastPlace&&lastPlace.name&&isFinite(lastPlace.lat)&&isFinite(lastPlace.lon)))lastPlace=null;
+var loc=home||lastPlace||DEMO;
+function isDemo(){return loc===DEMO&&!home}
 var LOADED_AT=0,SAVED=0,EX={},reqId=0,DATA=null,I0=0,D0=0,lastSmart=[],nwsState={status:"idle",items:[]},memo=[],gddState=null,selCell=-1;
 function savePrefs(){store.set("wx.prefs",prefs)}
 
@@ -1984,7 +2032,7 @@ function render(){
       now='<div class="now"><svg viewBox="0 0 120 34" aria-hidden="true">'+bars+'</svg><span class="num">Next 2 h: '+(tot<0.005?"dry":PR(tot)+" "+prU()+" expected"+(firstWet>=0?", starting in ~"+(firstWet*15)+" min":""))+'</span></div>';
     }
   }
-  var hero='<section class="hero" data-sky="'+skyOf(c.weather_code,c.is_day)+'" data-tod="'+(c.is_day?"day":"night")+'"><div><div class="where"><strong>'+esc(loc.name)+'</strong>'+(isHome()?'<span class="tag">Home</span>':'')+'</div>'+
+  var hero='<section class="hero" data-sky="'+skyOf(c.weather_code,c.is_day)+'" data-tod="'+(c.is_day?"day":"night")+'"><div><div class="where"><strong>'+esc(loc.name)+'</strong>'+(isHome()?'<span class="tag">Home</span>':'')+(isDemo()?'<span class="tag tag-demo">Sample location</span>':'')+'</div>'+
     '<div class="temp num">'+Math.round(cvT(c.temperature_2m))+'<sup>°</sup></div><div class="cond">'+info[0]+'</div>'+
     '<div class="sub num">Feels '+T(c.apparent_temperature)+' · H '+T(D.temperature_2m_max[d0])+' L '+T(D.temperature_2m_min[d0])+'<span class="pro"> · Dew pt '+T(h0.dew)+' · RH '+nf(c.relative_humidity_2m)+'%</span></div></div>'+
     icon(info[1],night,"big")+now+
@@ -2181,13 +2229,18 @@ function drawGdd(){
 function isHome(){return home&&Math.abs(home.lat-loc.lat)<1e-4&&Math.abs(home.lon-loc.lon)<1e-4}
 function updateBar(){
   var set=$("#setHome"),go=$("#goHome");
-  if(isHome()){set.textContent="Home location ✓";set.disabled=true}
-  else{set.textContent=home?"Make this my home":"Set as home";set.disabled=false}
+  var here=isHome(),t=here?"This is your home location":(home?"Make this my home":"Set as home"),sl=set.querySelector(".lbl");
+  set.setAttribute("aria-label",t);set.title=t;set.setAttribute("aria-pressed",here?"true":"false");set.setAttribute("aria-disabled",here?"true":"false");set.disabled=false;
+  if(sl)sl.textContent=here?"Home":"Set home";
   set.classList.toggle("primary",!home);
   go.classList.toggle("primary",!!home&&!isHome());
   go.hidden=!home||isHome();
+  var hint=$("#locHint");if(hint)hint.hidden=!isDemo();
+  var w=document.querySelector(".hero .where"),dt=w&&w.querySelector(".tag-demo");
+  if(isDemo()&&w&&!dt)w.insertAdjacentHTML("beforeend",'<span class="tag tag-demo">Sample location</span>');
+  if(!isDemo()&&dt)dt.remove();
 }
-function setLoc(l){loc=l;$("#q").value="";hideResults();selCell=-1;load();mapRecenter()}
+function setLoc(l){loc=l;store.set("wx.place",{name:l.name,lat:l.lat,lon:l.lon});$("#q").value="";hideResults();selCell=-1;load();mapRecenter()}
 var toastT=null;
 function hideToast(){var t=$("#toast");t.hidden=true;clearTimeout(toastT)}
 function toast(text,label,fn){
@@ -2197,6 +2250,7 @@ function toast(text,label,fn){
   t.hidden=false;toastT=setTimeout(hideToast,label?9000:6000);
 }
 $("#setHome").addEventListener("click",function(){
+  if(isHome())return;
   var prev=home;home={name:loc.name,lat:loc.lat,lon:loc.lon};store.set("wx.home",home);updateBar();
   var tag=document.querySelector(".hero .where");if(tag&&!tag.querySelector(".tag"))tag.insertAdjacentHTML("beforeend",'<span class="tag">Home</span>');
   toast("Home set to "+loc.name+".","Undo",function(){
@@ -2208,9 +2262,9 @@ $("#goHome").addEventListener("click",function(){if(home)setLoc(home)});
 $("#locate").addEventListener("click",function(){
   var b=this;
   if(!navigator.geolocation){toast("This browser can't share your location. Search for a town instead.");$("#q").focus();return}
-  b.textContent="Locating…";b.disabled=true;
-  navigator.geolocation.getCurrentPosition(function(p){b.textContent="Locate";b.disabled=false;setLoc({name:"My location",lat:+p.coords.latitude.toFixed(2),lon:+p.coords.longitude.toFixed(2)})},
-    function(){b.textContent="Locate";b.disabled=false;toast("Location is blocked or timed out. Search for a town instead.");$("#q").focus()},{timeout:10000});
+  var bl=b.querySelector(".lbl")||b;bl.textContent="Locating…";b.disabled=true;
+  navigator.geolocation.getCurrentPosition(function(p){bl.textContent="Locate";b.disabled=false;setLoc({name:"My location",lat:+p.coords.latitude.toFixed(2),lon:+p.coords.longitude.toFixed(2)})},
+    function(){bl.textContent="Locate";b.disabled=false;toast("Location is blocked or timed out. Search for a town instead.");$("#q").focus()},{timeout:10000});
 });
 function msg(t){var r=$("#results");r.hidden=false;r.innerHTML='<li><small style="padding:9px 10px;display:block">'+esc(t)+'</small></li>'}
 $("#tu").value=prefs.tu;$("#wu").value=prefs.wu;$("#model").value=prefs.model;
@@ -2241,6 +2295,16 @@ $("#q").addEventListener("input",function(){
 $("#q").addEventListener("keydown",function(e){if(e.key==="Enter"){var f=$("#results button");if(f){e.preventDefault();f.click()}}});
 document.addEventListener("click",function(e){if(!e.target.closest(".search"))hideResults()});
 document.addEventListener("keydown",function(e){if(e.key==="Escape")hideResults()});
+/* bar Search and the "/" key jump to the place field at the top of the page */
+function findPlace(){var q=$("#q");if(!q)return;closeMenus();window.scrollTo({top:0,behavior:"auto"});q.focus();q.select()}
+$("#findBtn").addEventListener("click",function(e){e.stopPropagation();findPlace()});
+document.addEventListener("keydown",function(e){
+  if(e.key!=="/"||e.ctrlKey||e.metaKey||e.altKey)return;
+  var t=e.target,tag=(t&&t.tagName)||"";
+  if(/^(INPUT|TEXTAREA|SELECT)$/.test(tag)||(t&&t.isContentEditable))return;
+  if(!ob.hidden||document.querySelector("dialog[open]"))return;
+  e.preventDefault();findPlace();
+});
 var ST={"Alabama":"AL","Alaska":"AK","Arizona":"AZ","Arkansas":"AR","California":"CA","Colorado":"CO","Connecticut":"CT","Delaware":"DE","Florida":"FL","Georgia":"GA","Hawaii":"HI","Idaho":"ID","Illinois":"IL","Indiana":"IN","Iowa":"IA","Kansas":"KS","Kentucky":"KY","Louisiana":"LA","Maine":"ME","Maryland":"MD","Massachusetts":"MA","Michigan":"MI","Minnesota":"MN","Mississippi":"MS","Missouri":"MO","Montana":"MT","Nebraska":"NE","Nevada":"NV","New Hampshire":"NH","New Jersey":"NJ","New Mexico":"NM","New York":"NY","North Carolina":"NC","North Dakota":"ND","Ohio":"OH","Oklahoma":"OK","Oregon":"OR","Pennsylvania":"PA","Rhode Island":"RI","South Carolina":"SC","South Dakota":"SD","Tennessee":"TN","Texas":"TX","Utah":"UT","Vermont":"VT","Virginia":"VA","Washington":"WA","West Virginia":"WV","Wisconsin":"WI","Wyoming":"WY"};
 function abbr(s){return ST[s]||s}
 
@@ -2932,7 +2996,6 @@ function obClose(){
   ob.hidden=true;setTitle();inertApp(false);
   store.set("wx.onboarded",true);
   if(!reqId)load();
-  if(!home&&!OB.pick)toast("Showing a sample location. Search or tap Locate to pick yours.");
   if(OB.replay)setBtn.focus();
 }
 function obCommit(){
@@ -3140,6 +3203,7 @@ function bkChip(){
   var t=store.get("wx.lastBackup",0),stale=t?(Date.now()-t>7*864e5):!!home;
   var c=$("#bkChip");c.textContent=t?"Backed up "+ago(t):"Never backed up";c.classList.toggle("warn",stale);
   $("#top").classList.toggle("stale",stale);
+  var dot=$("#dataBtn .tb-dot");if(dot)dot.hidden=!stale;
   dataBtn.setAttribute("aria-label",stale?"Data menu. Backup is overdue.":"Data menu");
 }
 function bkRefresh(){
@@ -3209,7 +3273,7 @@ $("#wipeYes").addEventListener("click",function(){
   new MutationObserver(function(){clearTimeout(t);t=setTimeout(fix,60)}).observe(document.body,{childList:true,subtree:true});fix()})();
 applyMode();
 
-if(!store.get("wx.onboarded",false)&&!home)obOpen();
+if(!store.get("wx.onboarded",false)&&!home){obOpen();load()}
 else{if(home)store.set("wx.onboarded",true);load()}
 
 /* ---------- share images (MB Suite v3 MBShare): drawn on this device from the forecast on screen.
